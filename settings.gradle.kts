@@ -28,4 +28,5 @@ dependencyResolutionManagement {
     }
 }
 
-include(":composeApp")
+//include(":composeApp")
+include(":composeApp", ":composeApp:sekret")

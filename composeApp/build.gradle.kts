@@ -30,7 +30,6 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
-//            findTes
         }
     }
     
@@ -120,7 +119,8 @@ android {
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
         }
     }
     compileOptions {
@@ -141,6 +141,8 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "mak.app.anikloud"
             packageVersion = "1.0.0"
+//            println(project.layout.projectDirectory.dir("resources"))
+//            appResourcesRootDir.set(project.layout.projectDirectory.dir("resources"))
         }
     }
 }
@@ -166,7 +168,8 @@ sekret {
         enabled.set(true) // REQUIRED!!!
         packageName.set("mak.app.anikloud")
         encryptionKey.set("local-properties-password") // TODO: get from local properties
-        propertiesFile.set(project.layout.projectDirectory.file("vault.properties"))
+//        println(rootProject.layout.projectDirectory.file("composeApp/vault.properties"))
+        propertiesFile.set(rootProject.layout.projectDirectory.file("composeApp/vault.properties"))
 
         nativeCopy {
             androidJNIFolder.set(project.layout.projectDirectory.dir("src/androidMain/jniLibs")) // REQUIRED if targeting android

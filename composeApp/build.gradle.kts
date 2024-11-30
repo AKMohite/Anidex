@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.jetbrains.kotlin.serialization)
     id("app.cash.sqldelight") version libs.versions.sqldelight
+    alias(libs.plugins.sekret)
 }
 
 kotlin {
@@ -150,6 +151,27 @@ sqldelight {
     databases {
         create("AnikloudDatabase") {
             packageName.set("mak.app.anikloud")
+        }
+    }
+}
+
+sekret {
+    obfuscation {
+        secretAnnotation {
+            mask.set("###")
+            maskNull.set(true)
+        }
+    }
+    properties {
+        enabled.set(true) // REQUIRED!!!
+        packageName.set("mak.app.anikloud")
+        encryptionKey.set("local-properties-password") // TODO: get from local properties
+        propertiesFile.set(project.layout.projectDirectory.file("vault.properties"))
+
+        nativeCopy {
+            androidJNIFolder.set(project.layout.projectDirectory.dir("src/androidMain/jniLibs")) // REQUIRED if targeting android
+            desktopComposeResourcesFolder.set(project.layout.projectDirectory.dir("src/jvmMain/resources")) // for targeting desktop compose
+//            desktopComposeResourcesFolder.set(project.layout.projectDirectory.dir("resources"))
         }
     }
 }

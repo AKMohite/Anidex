@@ -10,8 +10,8 @@ import mak.app.anikloud.domain.model.Anime
 
 @Composable
 internal fun AnimePager(
-    modifier: Modifier = Modifier,
-    animes: List<Anime> = emptyList()
+    animes: List<Anime> = emptyList(),
+    modifier: Modifier = Modifier
 ) {
     LazyColumn {
         items(animes, key = { anime -> anime.id }) { anime ->

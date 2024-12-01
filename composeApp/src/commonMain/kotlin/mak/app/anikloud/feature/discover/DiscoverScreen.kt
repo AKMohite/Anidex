@@ -25,5 +25,5 @@ internal fun DiscoverScreen(
     state: DiscoverState,
     onAction: (DiscoverAction) -> Unit
 ) {
-    AnimePager()
+    AnimePager(animes = state.airingAnime)
 }

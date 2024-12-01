@@ -10,6 +10,8 @@ import mak.app.anikloud.core.remote.dto.DiscoverAnimeDTO
 import mak.app.anikloud.core.remote.ext.safeCall
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_CURRENT
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_DATA_LIMIT
+import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_INCLUDE
+import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_INCLUDE_GENRE
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_LIMIT
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_OFFSET
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_SORT
@@ -31,6 +33,7 @@ internal class KtorAnimeAPI(
                 parameter(QUERY_LIMIT, QUERY_DATA_LIMIT)
                 parameter(QUERY_OFFSET, getPageOffset(page))
                 parameter(QUERY_SORT, QUERY_SORT_USER_COUNT)
+                parameter(QUERY_INCLUDE, QUERY_INCLUDE_GENRE)
             }
         }
     }

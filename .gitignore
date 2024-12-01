@@ -6,6 +6,7 @@ xcuserdata
 !src/**/build/
 local.properties
 .idea
+composeApp/src/commonMain/kotlin/mak/app/anikloud/AppSekret.kt
 .DS_Store
 captures
 .externalNativeBuild

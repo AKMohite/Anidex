@@ -21,12 +21,9 @@ import mak.app.anikloud.core.remote.KtorAnimeAPI
 import org.koin.dsl.module
 
 val remoteModule = module {
-    single<HttpClientEngine> { getClientEngine() }
     single<HttpClient> { getHttpClient(engine = get()) }
     single<AnimeAPI> { KtorAnimeAPI(client = get()) }
 }
-
-expect fun getClientEngine(): HttpClientEngine
 
 private fun getHttpClient(engine: HttpClientEngine): HttpClient {
     return HttpClient(engine = engine) {

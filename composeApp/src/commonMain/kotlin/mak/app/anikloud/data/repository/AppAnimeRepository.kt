@@ -6,6 +6,7 @@ import mak.app.anikloud.core.common.model.map
 import mak.app.anikloud.core.remote.AnimeAPI
 import mak.app.anikloud.core.remote.dto.DiscoverAnimeDTO
 import mak.app.anikloud.core.remote.dto.IncludeDTO
+import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_INCLUDE_GENRE
 import mak.app.anikloud.data.toModels
 import mak.app.anikloud.domain.model.Anime
 import mak.app.anikloud.domain.repository.AnimeRepository
@@ -34,7 +35,7 @@ internal class AppAnimeRepository(
         val a = data.map { (id, relation) ->
             val genres = relation?.type?.genres?.mapNotNull { genre ->
                 allGenres.firstOrNull {
-                    it.id == genre.id
+                    it.id == genre.id && it.type == QUERY_INCLUDE_GENRE
                 }
             } ?: emptyList()
             id to genres

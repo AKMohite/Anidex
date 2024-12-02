@@ -6,6 +6,6 @@ import mak.app.anikloud.domain.model.Anime
 internal data class DiscoverState(
     val airingAnime: List<Anime> = emptyList(),
     val isLoading: Boolean = false,
-    val selectedAnime: Int? = null,
+    val selectedAnime: Long? = null,
     val errorMessage: UiText? = null
 )

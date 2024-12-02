@@ -19,7 +19,7 @@ kotlin = "2.0.21"
 kotlinx-coroutines = "1.9.0"
 kotlinSerialization = "1.7.3"
 ktor = "3.0.1"
-sekret = "2.0.0-alpha-07"
+sekret = "2.0.0-alpha-08"
 sqldelight= "2.0.2"
 
 [libraries]

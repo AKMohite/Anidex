@@ -54,7 +54,7 @@ kotlin {
 
   sourceSets {
     commonMain.dependencies {
-      api("dev.datlag.sekret:sekret:2.0.0-alpha-07")
+      api("dev.datlag.sekret:sekret:${libs.versions.sekret}")
     }
 
     val jniNativeMain by creating {

@@ -4,6 +4,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.url
+import mak.app.anikloud.AppSekret.API_BASE_EXT
 import mak.app.anikloud.core.common.model.AppResult
 import mak.app.anikloud.core.common.model.DataError
 import mak.app.anikloud.core.remote.dto.DiscoverAnimeDTO
@@ -28,7 +29,7 @@ internal class KtorAnimeAPI(
         return safeCall {
             client
             client.get {
-                url("anime")
+                url("${API_BASE_EXT}/anime")
                 parameter(QUERY_STATUS, QUERY_CURRENT)
                 parameter(QUERY_LIMIT, QUERY_DATA_LIMIT)
                 parameter(QUERY_OFFSET, getPageOffset(page))

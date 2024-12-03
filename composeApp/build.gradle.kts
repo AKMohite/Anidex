@@ -17,7 +17,7 @@ kotlin {
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
     
@@ -29,6 +29,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+//            findTes
         }
     }
     
@@ -122,8 +123,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 }
 
@@ -144,8 +145,10 @@ compose.desktop {
 }
 
 sqldelight {
+//    linkSqlite = true
+//    https://github.com/sqldelight/sqldelight/issues/1442
     databases {
-        create("AnimloudDatabase") {
+        create("AnikloudDatabase") {
             packageName.set("mak.app.anikloud")
         }
     }

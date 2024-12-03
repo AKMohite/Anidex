@@ -4,8 +4,8 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.url
-import mak.app.anikloud.AppSekret.API_BASE_EXT
 import mak.app.anikloud.core.common.model.AppResult
+import mak.app.anikloud.core.common.model.AppVault
 import mak.app.anikloud.core.common.model.DataError
 import mak.app.anikloud.core.remote.dto.DiscoverAnimeDTO
 import mak.app.anikloud.core.remote.ext.safeCall
@@ -20,7 +20,8 @@ import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_SORT_USER_COUNT
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_STATUS
 
 internal class KtorAnimeAPI(
-    private val client: HttpClient
+    private val client: HttpClient,
+    private val vault: AppVault
 ) : AnimeAPI {
 
     override suspend fun getAiringAnime(
@@ -29,7 +30,7 @@ internal class KtorAnimeAPI(
         return safeCall {
             client
             client.get {
-                url("${API_BASE_EXT}/anime")
+                url("${vault.baseUrlExt}/anime")
                 parameter(QUERY_STATUS, QUERY_CURRENT)
                 parameter(QUERY_LIMIT, QUERY_DATA_LIMIT)
                 parameter(QUERY_OFFSET, getPageOffset(page))

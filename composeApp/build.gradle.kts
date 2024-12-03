@@ -162,8 +162,11 @@ sekret {
         enabled.set(true) // REQUIRED!!!
         packageName.set("mak.app.anikloud")
         encryptionKey.set("129048928398") // TODO: get from local properties
-//        println(rootProject.layout.projectDirectory.file("composeApp/vault.properties"))
-        propertiesFile.set(rootProject.layout.projectDirectory.file("composeApp/vault.properties"))
+//        println(rootProject.layout.projectDirectory.file("composeApp/sekret.properties"))
+//        propertiesFile.set(rootProject.layout.projectDirectory.file("composeApp/vault.properties"))
+//        TODO check with different filename getting property field not set error
+        propertiesFile.set(project.layout.projectDirectory.file("sekret.properties"))
+//        println(project.layout.projectDirectory.file("sekret.properties"))
 
         nativeCopy {
             androidJNIFolder.set(project.layout.projectDirectory.dir("src/androidMain/jniLibs")) // REQUIRED if targeting android

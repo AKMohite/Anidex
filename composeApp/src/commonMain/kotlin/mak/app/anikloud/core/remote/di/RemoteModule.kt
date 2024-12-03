@@ -15,17 +15,17 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import mak.app.anikloud.AppSekret
+import mak.app.anikloud.core.common.model.AppVault
 import mak.app.anikloud.core.remote.AnimeAPI
 import mak.app.anikloud.core.remote.KtorAnimeAPI
 import org.koin.dsl.module
 
 val remoteModule = module {
-    single<HttpClient> { getHttpClient(engine = get()) }
-    single<AnimeAPI> { KtorAnimeAPI(client = get()) }
+    single<HttpClient> { getHttpClient(engine = get(), vault = get()) }
+    single<AnimeAPI> { KtorAnimeAPI(client = get(), vault = get()) }
 }
 
-private fun getHttpClient(engine: HttpClientEngine): HttpClient {
+private fun getHttpClient(engine: HttpClientEngine, vault: AppVault): HttpClient {
     return HttpClient(engine = engine) {
         install(ContentNegotiation) {
             json(
@@ -49,11 +49,11 @@ private fun getHttpClient(engine: HttpClientEngine): HttpClient {
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
-                host = AppSekret.API_HOST
-                header("API", AppSekret.API_KEY)
+                host = vault.apiHost
+                header("API", vault.apiKey)
             }
-            accept(ContentType(contentType = "application", contentSubtype = AppSekret.CONTENT_TYPE))
-            contentType(ContentType(contentType = "application", contentSubtype = AppSekret.CONTENT_TYPE))
+            accept(ContentType(contentType = "application", contentSubtype = vault.contentType))
+            contentType(ContentType(contentType = "application", contentSubtype = vault.contentType))
 //            contentType(ContentType.Application.HalJson) must use the 'application/vnd.api+json'
         }
     }

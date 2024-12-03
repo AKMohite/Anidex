@@ -5,7 +5,7 @@
 xcuserdata
 !src/**/build/
 composeApp/sekret/src
-composeApp/vault.properties
+composeApp/sekret.properties
 local.properties
 .idea
 composeApp/src/commonMain/kotlin/mak/app/anikloud/AppSekret.kt

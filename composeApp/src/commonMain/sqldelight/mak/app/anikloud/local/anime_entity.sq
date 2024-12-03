@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `animes` (
+    id INTEGER PRIMARY KEY NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    image TEXT,
+    cover_image TEXT,
+    genres TEXT NOT NULL
+);
+
+insertPodcast:
+INSERT OR REPLACE INTO animes (id , title, description, image, cover_image, genres) VALUES ?;
+
+getPodcastById:
+SELECT * FROM animes WHERE id = :id;
+
+delete:
+DELETE FROM animes WHERE id = :id;
+
+removeAllPodcasts:
+DELETE FROM animes;

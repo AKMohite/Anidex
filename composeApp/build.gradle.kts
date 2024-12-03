@@ -158,16 +158,10 @@ sqldelight {
 }
 
 sekret {
-    obfuscation {
-        secretAnnotation {
-            mask.set("###")
-            maskNull.set(true)
-        }
-    }
     properties {
         enabled.set(true) // REQUIRED!!!
         packageName.set("mak.app.anikloud")
-        encryptionKey.set("local-properties-password") // TODO: get from local properties
+        encryptionKey.set("129048928398") // TODO: get from local properties
 //        println(rootProject.layout.projectDirectory.file("composeApp/vault.properties"))
         propertiesFile.set(rootProject.layout.projectDirectory.file("composeApp/vault.properties"))
 
@@ -175,6 +169,13 @@ sekret {
             androidJNIFolder.set(project.layout.projectDirectory.dir("src/androidMain/jniLibs")) // REQUIRED if targeting android
             desktopComposeResourcesFolder.set(project.layout.projectDirectory.dir("src/jvmMain/resources")) // for targeting desktop compose
 //            desktopComposeResourcesFolder.set(project.layout.projectDirectory.dir("resources"))
+        }
+    }
+
+    obfuscation {
+        secretAnnotation {
+            mask.set("###")
+            maskNull.set(true)
         }
     }
 }

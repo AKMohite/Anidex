@@ -1,5 +1,6 @@
 package mak.app.anikloud.core.remote.utils
 
+// TODO: This class can be domain model with constants?
 internal object APIConstants {
 
     const val QUERY_STATUS = "filter[status]"

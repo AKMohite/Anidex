@@ -1,5 +1,6 @@
 package mak.app.anikloud.data
 
+import mak.app.anikloud.core.database.dao.AnimeEntity
 import mak.app.anikloud.core.remote.dto.DataDTO
 import mak.app.anikloud.domain.model.Anime
 
@@ -12,28 +13,28 @@ internal fun DataDTO.toAnime(): Anime {
     )
 }
 
-internal fun List<DataDTO>.toModels(): List<Anime> {
+internal fun List<DataDTO>.toDomainModels(): List<Anime> {
     return this.map { it.toAnime() }
 }
 
-//internal fun DataDTO.toEntity(): AnimeEntity = AnimeEntity(
-//    id = id?.toLong() ?: 0L,
-//    title = attributes?.titles?.en ?: "",
-//    description = attributes?.description ?: "",
-//    image = attributes?.posterImage?.tiny,
-//    coverImage = attributes?.coverImage?.medium,
-//    genres = emptyList() // TODO map genres from repository
-//)
-//
-//internal fun List<DataDTO>.toEntities() = this.map { it.toEntity() }
-//
-//internal fun List<AnimeEntity>.toModels() = this.map { it.toModel() }
-//
-//internal fun AnimeEntity.toModel(): Anime {
-//    return Anime(
-//        id = id,
-//        title = title,
-//        poster = image,
-//        coverImage = coverImage
-//    )
-//}
+internal fun DataDTO.toEntity(): AnimeEntity = AnimeEntity(
+    id = id?.toLong() ?: 0L,
+    title = attributes?.titles?.en ?: "",
+    description = attributes?.description ?: "",
+    image = attributes?.posterImage?.tiny,
+    cover_image = attributes?.coverImage?.medium,
+    genres = "" // TODO map genres from repository
+)
+
+internal fun List<DataDTO>.toEntities() = this.map { it.toEntity() }
+
+internal fun List<AnimeEntity>.toModels() = this.map { it.toModel() }
+
+internal fun AnimeEntity.toModel(): Anime {
+    return Anime(
+        id = id,
+        title = title,
+        poster = image,
+        coverImage = cover_image
+    )
+}

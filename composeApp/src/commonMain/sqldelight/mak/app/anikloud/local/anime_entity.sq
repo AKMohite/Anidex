@@ -16,5 +16,5 @@ SELECT * FROM animes WHERE id = :id;
 delete:
 DELETE FROM animes WHERE id = :id;
 
-removeAllPodcasts:
+deleteAll:
 DELETE FROM animes;

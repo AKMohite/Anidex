@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS `airing_animes` (
+    `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    `anime_id` TEXT NOT NULL,
+    `page` INTEGER AS kotlin.Int NOT NULL,
+    FOREIGN KEY(`anime_id`) REFERENCES `animes`(`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+getAiringAnimes:
+SELECT animes.* FROM airing_animes INNER JOIN animes ON animes.id = airing_animes.anime_id ORDER BY page ASC;
+
+insertAnime:
+INSERT OR IGNORE INTO airing_animes (id, anime_id, page) VALUES (nullif(:id, 0), :anime_id, :page);
+
+deletePage:
+DELETE FROM airing_animes WHERE page=:page;
+
+deleteAll:
+DELETE FROM airing_animes;

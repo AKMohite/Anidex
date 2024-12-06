@@ -43,10 +43,5 @@ internal class SQLDelightAnimeDAO(
 
 }
 
-internal interface AnimeDAO/*: BaseDAO<AnimeEntity>*/ {
-    fun insert(entity: AnimeEntity)
-    fun insert(entities: List<AnimeEntity>)
-    fun update(entity: AnimeEntity)
-    fun delete(entity: AnimeEntity)
-    fun deleteAll()
+internal interface AnimeDAO: BaseDAO<AnimeEntity> {
 }

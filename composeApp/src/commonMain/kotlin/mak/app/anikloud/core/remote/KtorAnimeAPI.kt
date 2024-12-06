@@ -1,6 +1,7 @@
 package mak.app.anikloud.core.remote
 
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.url
@@ -23,11 +24,10 @@ internal class KtorAnimeAPI(
     private val client: HttpClient
 ) : AnimeAPI {
 
-    override suspend fun getAiringAnime(
+    override suspend fun getAiringAnimeResult(
         page: Int
     ): AppResult<DiscoverAnimeDTO, DataError.Remote> {
         return safeCall {
-            client
             client.get {
                 url("${API_BASE_EXT}/anime")
                 parameter(QUERY_STATUS, QUERY_CURRENT)
@@ -37,6 +37,17 @@ internal class KtorAnimeAPI(
                 parameter(QUERY_INCLUDE, QUERY_INCLUDE_GENRE)
             }
         }
+    }
+
+    override suspend fun getAiringAnime(page: Int): DiscoverAnimeDTO {
+        return client.get {
+            url("${API_BASE_EXT}/anime")
+            parameter(QUERY_STATUS, QUERY_CURRENT)
+            parameter(QUERY_LIMIT, QUERY_DATA_LIMIT)
+            parameter(QUERY_OFFSET, getPageOffset(page))
+            parameter(QUERY_SORT, QUERY_SORT_USER_COUNT)
+            parameter(QUERY_INCLUDE, QUERY_INCLUDE_GENRE)
+        }.body()
     }
 
     private fun getPageOffset(page: Int): Int {

@@ -83,6 +83,7 @@ kotlin {
             implementation(libs.navigation.compose)
             implementation(libs.sqldelight.extensions)
             implementation(libs.sqldelight.primitive)
+            implementation(libs.store)
 
             implementation(libs.bundles.ktor)
         }

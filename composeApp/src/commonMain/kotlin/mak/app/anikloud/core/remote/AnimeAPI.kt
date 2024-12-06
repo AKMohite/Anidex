@@ -5,7 +5,11 @@ import mak.app.anikloud.core.common.model.DataError
 import mak.app.anikloud.core.remote.dto.DiscoverAnimeDTO
 
 internal interface AnimeAPI {
-    suspend fun getAiringAnime(
+    suspend fun getAiringAnimeResult(
         page: Int = 1
     ): AppResult<DiscoverAnimeDTO, DataError.Remote>
+
+    suspend fun getAiringAnime(
+        page: Int = 1
+    ): DiscoverAnimeDTO
 }

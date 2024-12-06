@@ -20,7 +20,7 @@ internal class AppAnimeRepository(
     private val transactionRunner: DatabaseTransactionRunner
 ) : AnimeRepository {
     override suspend fun getAiringAnime(): AppResult<List<Anime>, DataError> {
-        val apiResult = api.getAiringAnime()
+        val apiResult = api.getAiringAnimeResult()
         return apiResult
             .map { dto ->
                 val genresMap = getAnimeGenres(dto)

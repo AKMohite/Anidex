@@ -10,6 +10,40 @@ import mak.app.anikloud.core.common.model.AppResult
 import mak.app.anikloud.core.common.model.DataError
 import kotlin.coroutines.coroutineContext
 
+class RemoteException(
+    val type: DataError.Remote,
+    val msg: String? = null,
+    val statusCode: Int? = null,
+    val throwable: Throwable? = null
+): RuntimeException(throwable?.message ?: msg)
+
+suspend inline fun <reified T> safeKtorCall(execute: () -> HttpResponse): T {
+    val response = try {
+        execute()
+    } catch (e: SocketTimeoutException) {
+        throw RemoteException(type = DataError.Remote.REQUEST_TIMEOUT, throwable = e)
+    } catch (e: UnresolvedAddressException) {
+        throw RemoteException(type = DataError.Remote.NO_INTERNET, throwable = e)
+    } catch (e: Exception) {
+        coroutineContext.ensureActive() // coroutine cancellation exception
+        throw RemoteException(type = DataError.Remote.UNKNOWN, throwable = e)
+    }
+    when(val statusCode = response.status.value) {
+        in 200..299 -> {
+            try {
+                return response.body<T>()
+            } catch (e: NoTransformationFoundException) {
+                throw RemoteException(type = DataError.Remote.SERIALIZATION, throwable = e)
+            }
+        }
+        408 -> throw RemoteException(type = DataError.Remote.REQUEST_TIMEOUT, statusCode = statusCode)
+        429 -> throw RemoteException(type = DataError.Remote.TOO_MANY_REQUESTS, statusCode = statusCode)
+        in 500..599 -> throw RemoteException(type = DataError.Remote.SERVER, statusCode = statusCode)
+        else -> throw RemoteException(type = DataError.Remote.UNKNOWN, statusCode = statusCode)
+    }
+}
+
+
 suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): AppResult<T, DataError.Remote> {
     val response = try {
         execute()

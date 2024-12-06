@@ -5,6 +5,7 @@ import mak.app.anikloud.data.di.DataQualifiers.GET_AIRING
 import mak.app.anikloud.data.di.DataQualifiers.REFRESH_AIRING
 import mak.app.anikloud.data.repository.AppAnimeRepository
 import mak.app.anikloud.data.store.AiringAnimeStore
+import mak.app.anikloud.data.store.DiscoverAnimeStore
 import mak.app.anikloud.data.usecase.refresh.RefreshAiringAnimeUseCase
 import mak.app.anikloud.data.usecase.update.GetAiringAnimeUseCase
 import mak.app.anikloud.domain.repository.AnimeRepository
@@ -14,7 +15,7 @@ val dataModule = module {
 
     // region store5
 //    factory(qualifier = "qualifier-name") {}
-    factory(qualifier = AIRING_STORE) { AiringAnimeStore(
+    factory<DiscoverAnimeStore>(qualifier = AIRING_STORE) { AiringAnimeStore(
         api = get(),
         animeDAO = get(),
         airingAnimeDAO = get(),
@@ -27,7 +28,7 @@ val dataModule = module {
 //    TODO: usecase must be domain and not data?
     // region usecase
     factory(qualifier = GET_AIRING) { GetAiringAnimeUseCase(get()) }
-    factory(qualifier = REFRESH_AIRING) { RefreshAiringAnimeUseCase(get()) }
+    factory(qualifier = REFRESH_AIRING) { RefreshAiringAnimeUseCase(get(AIRING_STORE)) }
     // endregion
 
     single<AnimeRepository> { AppAnimeRepository(api = get(), dao = get(), transactionRunner = get()) }

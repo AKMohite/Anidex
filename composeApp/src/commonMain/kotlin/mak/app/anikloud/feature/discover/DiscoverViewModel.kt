@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import mak.app.anikloud.core.common.ui.toUiText
 import mak.app.anikloud.data.usecase.refresh.RefreshAiringAnimeUseCase
 import mak.app.anikloud.data.usecase.update.GetAiringAnimeUseCase
 
@@ -76,8 +77,13 @@ internal class DiscoverViewModel(
                 }
             }
             .onCompletion { isFetchingAnime = true }
-            .catch {
-                println(it)
+            .catch { throwable ->
+                _state.update {
+                    it.copy(
+                        isLoading = false,
+                        errorMessage = throwable.toUiText()
+                    )
+                }
             }.launchIn(viewModelScope)
     }
 
@@ -85,7 +91,8 @@ internal class DiscoverViewModel(
         viewModelScope.launch {
             refreshAiringAnimeUseCase(1)
         }.invokeOnCompletion {
-            println(it)
+//            println(it)
+//            println(it?.toUiText())
         }
     }
 

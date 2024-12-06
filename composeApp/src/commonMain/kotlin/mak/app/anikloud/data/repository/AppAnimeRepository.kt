@@ -31,7 +31,6 @@ internal class AppAnimeRepository(
                 transactionRunner {
                     dao.insert(entities)
                 }
-                println(allGenres)
                 entities.toModels()
 //                dto.data.toModels()
             }

@@ -6,6 +6,7 @@ import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.statement.HttpResponse
 import io.ktor.util.network.UnresolvedAddressException
 import kotlinx.coroutines.ensureActive
+import kotlinx.io.IOException
 import mak.app.anikloud.core.common.model.AppResult
 import mak.app.anikloud.core.common.model.DataError
 import kotlin.coroutines.coroutineContext
@@ -24,7 +25,10 @@ suspend inline fun <reified T> safeKtorCall(execute: () -> HttpResponse): T {
         throw RemoteException(type = DataError.Remote.REQUEST_TIMEOUT, throwable = e)
     } catch (e: UnresolvedAddressException) {
         throw RemoteException(type = DataError.Remote.NO_INTERNET, throwable = e)
+    } catch (e: IOException) {
+        throw RemoteException(type = DataError.Remote.NO_INTERNET, throwable = e)
     } catch (e: Exception) {
+        println(e)
         coroutineContext.ensureActive() // coroutine cancellation exception
         throw RemoteException(type = DataError.Remote.UNKNOWN, throwable = e)
     }

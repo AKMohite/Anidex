@@ -9,6 +9,10 @@ import org.koin.dsl.module
 val featureModule = module {
 //    viewModelOf(::DiscoverViewModel)
     viewModel {
-        DiscoverViewModel(get(DataQualifiers.REFRESH_AIRING), get(DataQualifiers.GET_AIRING))
+        DiscoverViewModel(
+            refreshAiringAnimeUseCase = get(DataQualifiers.REFRESH_AIRING),
+            getAiringAnimeUseCase = get(DataQualifiers.GET_AIRING),
+            dispatcher = get()
+        )
     }
 }

@@ -23,7 +23,7 @@ suspend inline fun <Key : Any, Output : Any> Store<Key, Output>.fetch(
 ): Output = when {
     // If we're forcing a fresh fetch, do it now
     forceFresh -> fresh(key)
-    else -> get(key)
+    else -> get(key) // if local data is valid do not call fetcher
 }
 
 fun <T> Flow<StoreReadResponse<T>>.filterForResult(): Flow<StoreReadResponse<T>> = filterNot {

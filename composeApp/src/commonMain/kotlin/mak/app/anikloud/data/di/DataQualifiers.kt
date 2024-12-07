@@ -15,5 +15,6 @@ internal object DataQualifiers {
 
     // region refresh usecase
     val REFRESH_AIRING = named("koin-refresh-airing")
+    val REFRESH_TRENDING = named("koin-refresh-trending")
     // endregion
 }

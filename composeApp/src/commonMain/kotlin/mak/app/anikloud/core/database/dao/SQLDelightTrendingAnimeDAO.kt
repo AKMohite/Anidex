@@ -18,8 +18,8 @@ internal class SQLDelightTrendingAnimeDAO(
     private val query = db.trending_anime_entityQueries
 
     override fun entriesObservable(page: Int): Flow<List<AnimeEntity>> {
-        val offset = (page - 1) * QUERY_DATA_LIMIT
-        return query.getTrendingAnimes(limit = QUERY_DATA_LIMIT.toLong(), offset = offset.toLong())
+        val offset = (page - 1) * 50
+        return query.getTrendingAnimes(limit = 50.toLong(), offset = offset.toLong())
             .asFlow()
             .mapToList(dispatcher.io)
     }

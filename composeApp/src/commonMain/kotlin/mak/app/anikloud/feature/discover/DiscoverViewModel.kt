@@ -15,9 +15,12 @@ import mak.app.anikloud.core.common.util.Dispatcher
 import mak.app.anikloud.data.usecase.refresh.RefreshAiringAnimeUseCase
 import mak.app.anikloud.data.usecase.fetch.GetAiringAnimeUseCase
 import mak.app.anikloud.data.usecase.fetch.GetBannerUseCase
+import mak.app.anikloud.data.usecase.refresh.RefreshTrendingAnimeUseCase
+import mak.app.anikloud.domain.usecase.RefreshAnimeUsecase
 
 internal class DiscoverViewModel(
-    private val refreshAiringAnimeUseCase: RefreshAiringAnimeUseCase,
+    private val refreshAiringAnimeUseCase: RefreshAnimeUsecase,
+    private val refreshTrendingAnimeUseCase: RefreshAnimeUsecase,
     private val getAiringAnimeUseCase: GetAiringAnimeUseCase,
     private val getBannerUseCase: GetBannerUseCase,
     dispatcher: Dispatcher
@@ -76,6 +79,7 @@ internal class DiscoverViewModel(
     private fun refreshAnimes() {
         uiScope.launch {
             refreshAiringAnimeUseCase(1)
+            refreshTrendingAnimeUseCase(1)
         }
     }
 

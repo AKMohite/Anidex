@@ -1,14 +1,13 @@
 package mak.app.anikloud.feature.discover
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import mak.app.anikloud.domain.model.DiscoverCategory
 import mak.app.anikloud.feature.discover.components.AnimePager
@@ -21,6 +20,8 @@ internal fun DiscoverRoute(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     DiscoverScreen(
+        modifier = Modifier
+            .fillMaxSize(),
         state = state,
         onAction = viewModel::onAction
     )
@@ -29,9 +30,12 @@ internal fun DiscoverRoute(
 @Composable
 internal fun DiscoverScreen(
     state: DiscoverState,
+    modifier: Modifier = Modifier,
     onAction: (DiscoverAction) -> Unit
 ) {
-    LazyColumn {
+    LazyColumn(
+        modifier = modifier
+    ) {
 //        item("Top Banner") {
 //            val banners = state.categorisedAnime.firstOrNull { it.type == DiscoverCategory.BANNER }
 //            if (banners != null && banners.animes.isNotEmpty()) {

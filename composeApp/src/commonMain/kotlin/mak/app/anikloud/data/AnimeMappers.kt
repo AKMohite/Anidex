@@ -26,7 +26,7 @@ internal fun DataDTO.toEntity(): AnimeEntity = AnimeEntity(
     id = id?.toLong() ?: 0L,
     title = attributes?.titles?.en ?: "",
     description = attributes?.description ?: "",
-    image = attributes?.posterImage?.tiny,
+    image = attributes?.posterImage?.medium,
     cover_image = attributes?.coverImage?.medium,
     genres = "" // TODO map genres from repository
 )

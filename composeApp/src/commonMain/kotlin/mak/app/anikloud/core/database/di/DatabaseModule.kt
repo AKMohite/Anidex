@@ -16,7 +16,9 @@ import mak.app.anikloud.core.database.dao.SQLDelightAnimeDAO
 import mak.app.anikloud.core.database.dao.SQLDelightTopRatedAnimeDAO
 import mak.app.anikloud.core.database.dao.SQLDelightPopularAnimeDAO
 import mak.app.anikloud.core.database.dao.SQLDelightTrendingAnimeDAO
+import mak.app.anikloud.core.database.dao.SQLDelightUpcomingAnimeDAO
 import mak.app.anikloud.core.database.dao.TrendingAnimeDAO
+import mak.app.anikloud.core.database.dao.UpcomingAnimeDAO
 import org.koin.dsl.module
 
 internal val databaseModule = module {
@@ -27,5 +29,6 @@ internal val databaseModule = module {
     single<PopularAnimeDAO> { SQLDelightPopularAnimeDAO(db = get(), dispatcher = get())  }
     single<TopRatedAnimeDAO> { SQLDelightTopRatedAnimeDAO(db = get(), dispatcher = get())  }
     single<TrendingAnimeDAO> { SQLDelightTrendingAnimeDAO(db = get(), dispatcher = get())  }
+    single<UpcomingAnimeDAO> { SQLDelightUpcomingAnimeDAO(db = get(), dispatcher = get())  }
     single<LastSyncDAO> { SQLDelightLastSyncDAO(db = get(), dispatcher = get())  }
 }

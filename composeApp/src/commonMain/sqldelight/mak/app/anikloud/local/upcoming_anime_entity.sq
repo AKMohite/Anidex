@@ -11,6 +11,15 @@ SELECT animes.* FROM upcoming_animes INNER JOIN animes ON animes.id = upcoming_a
 insertAnime:
 INSERT OR IGNORE INTO upcoming_animes (id, anime_id, page) VALUES (nullif(:id, 0), :anime_id, :page);
 
+update:
+UPDATE upcoming_animes SET `anime_id` = :animeId, `page` = :page WHERE id = :id;
+
+entriesInPage:
+SELECT animes.* FROM upcoming_animes INNER JOIN animes ON animes.id = upcoming_animes.anime_id WHERE page=:page ORDER BY page ASC;
+
+delete:
+DELETE FROM upcoming_animes WHERE id = :id;
+
 deletePage:
 DELETE FROM upcoming_animes WHERE page=:page;
 

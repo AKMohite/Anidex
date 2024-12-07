@@ -24,11 +24,13 @@ internal class DiscoverViewModel(
     private val refreshTrendingAnimeUseCase: RefreshAnimeUsecase,
     private val refreshPopularAnimeUseCase: RefreshAnimeUsecase,
     private val refreshTopRatedAnimeUseCase: RefreshAnimeUsecase,
+    private val refreshUpcomingAnimeUseCase: RefreshAnimeUsecase,
     private val getBannerUseCase: GetAnimeUsecase,
     private val getAiringAnimeUseCase: GetAnimeUsecase,
     private val getPopularAnimeUseCase: GetAnimeUsecase,
     private val getTopRatedAnimeUseCase: GetAnimeUsecase,
     private val getTrendingAnimeUseCase: GetAnimeUsecase,
+    private val getUpcomingAnimeUseCase: GetAnimeUsecase,
     dispatcher: Dispatcher
 ): BaseViewModel(
     dispatcher = dispatcher
@@ -81,8 +83,8 @@ internal class DiscoverViewModel(
             DiscoverCategory.TRENDING -> getTrendingAnimeUseCase(1)
             DiscoverCategory.MOST_POPULAR -> getPopularAnimeUseCase(1)
             DiscoverCategory.TOP_RATED -> getTopRatedAnimeUseCase(1)
+            DiscoverCategory.UPCOMING -> getUpcomingAnimeUseCase(1)
             else -> getAiringAnimeUseCase(1)
-//            DiscoverCategory.UPCOMING -> TODO()
         }
         return flowAnime
             .map { Pair(discoverCategory, it) }
@@ -123,6 +125,7 @@ internal class DiscoverViewModel(
             refreshTrendingAnimeUseCase(1)
             refreshPopularAnimeUseCase(1)
             refreshTopRatedAnimeUseCase(1)
+            refreshUpcomingAnimeUseCase(1)
         }.invokeOnCompletion {
             isRefreshingAnime = false
             _state.update { currentState -> currentState.copy(

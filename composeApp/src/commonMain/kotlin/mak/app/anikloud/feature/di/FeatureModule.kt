@@ -5,10 +5,12 @@ import mak.app.anikloud.data.di.DataQualifiers.GET_BANNER
 import mak.app.anikloud.data.di.DataQualifiers.GET_POPULAR
 import mak.app.anikloud.data.di.DataQualifiers.GET_TOP_RATED
 import mak.app.anikloud.data.di.DataQualifiers.GET_TRENDING
+import mak.app.anikloud.data.di.DataQualifiers.GET_UPCOMING
 import mak.app.anikloud.data.di.DataQualifiers.REFRESH_AIRING
 import mak.app.anikloud.data.di.DataQualifiers.REFRESH_POPULAR
 import mak.app.anikloud.data.di.DataQualifiers.REFRESH_TOP_RATED
 import mak.app.anikloud.data.di.DataQualifiers.REFRESH_TRENDING
+import mak.app.anikloud.data.di.DataQualifiers.REFRESH_UPCOMING
 import mak.app.anikloud.domain.usecase.GetAnimeUsecase
 import mak.app.anikloud.domain.usecase.RefreshAnimeUsecase
 import mak.app.anikloud.feature.discover.DiscoverViewModel
@@ -23,10 +25,12 @@ val featureModule = module {
             refreshPopularAnimeUseCase = get<RefreshAnimeUsecase>(REFRESH_POPULAR),
             refreshTopRatedAnimeUseCase = get<RefreshAnimeUsecase>(REFRESH_TOP_RATED),
             refreshTrendingAnimeUseCase = get<RefreshAnimeUsecase>(REFRESH_TRENDING),
+            refreshUpcomingAnimeUseCase = get<RefreshAnimeUsecase>(REFRESH_UPCOMING),
             getAiringAnimeUseCase = get<GetAnimeUsecase>(GET_AIRING),
             getTrendingAnimeUseCase = get<GetAnimeUsecase>(GET_TRENDING),
             getPopularAnimeUseCase = get<GetAnimeUsecase>(GET_POPULAR),
             getTopRatedAnimeUseCase = get<GetAnimeUsecase>(GET_TOP_RATED),
+            getUpcomingAnimeUseCase = get<GetAnimeUsecase>(GET_UPCOMING),
             getBannerUseCase = get<GetAnimeUsecase>(GET_BANNER),
             dispatcher = get()
         )

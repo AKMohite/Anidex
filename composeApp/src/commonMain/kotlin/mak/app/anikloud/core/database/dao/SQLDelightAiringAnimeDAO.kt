@@ -57,5 +57,4 @@ internal class SQLDelightAiringAnimeDAO(
 
 }
 
-internal interface AiringAnimeDAO: EntityDAO<AiringAnimeEntity> {
-}
+internal interface AiringAnimeDAO: EntityDAO<AiringAnimeEntity>

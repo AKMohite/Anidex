@@ -5,6 +5,7 @@ import org.koin.core.qualifier.named
 internal object DataQualifiers {
     // region store
     val AIRING_STORE = named("koin-airing-store")
+    val TRENDING_STORE = named("koin-trending-store")
     // endregion
 
     // region get usecase

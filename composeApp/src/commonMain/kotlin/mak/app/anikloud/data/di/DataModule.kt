@@ -4,9 +4,11 @@ import mak.app.anikloud.data.di.DataQualifiers.AIRING_STORE
 import mak.app.anikloud.data.di.DataQualifiers.GET_AIRING
 import mak.app.anikloud.data.di.DataQualifiers.GET_BANNER
 import mak.app.anikloud.data.di.DataQualifiers.REFRESH_AIRING
+import mak.app.anikloud.data.di.DataQualifiers.TRENDING_STORE
 import mak.app.anikloud.data.repository.AppAnimeRepository
 import mak.app.anikloud.data.store.AiringAnimeStore
 import mak.app.anikloud.data.store.DiscoverAnimeStore
+import mak.app.anikloud.data.store.TrendingAnimeStore
 import mak.app.anikloud.data.usecase.refresh.RefreshAiringAnimeUseCase
 import mak.app.anikloud.data.usecase.fetch.GetAiringAnimeUseCase
 import mak.app.anikloud.data.usecase.fetch.GetBannerUseCase
@@ -21,6 +23,15 @@ val dataModule = module {
         api = get(),
         animeDAO = get(),
         airingAnimeDAO = get(),
+        lastSyncDao = get(),
+        transactionRunner =get(),
+        dispatcher = get()
+    ) }
+
+    factory<DiscoverAnimeStore>(qualifier = TRENDING_STORE) { TrendingAnimeStore(
+        api = get(),
+        animeDAO = get(),
+        trendingAnimeDAO = get(),
         lastSyncDao = get(),
         transactionRunner =get(),
         dispatcher = get()

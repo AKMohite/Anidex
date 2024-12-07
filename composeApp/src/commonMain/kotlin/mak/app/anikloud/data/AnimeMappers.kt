@@ -2,6 +2,7 @@ package mak.app.anikloud.data
 
 import mak.app.anikloud.core.database.dao.AiringAnimeEntity
 import mak.app.anikloud.core.database.dao.AnimeEntity
+import mak.app.anikloud.core.database.dao.TrendingAnimeEntity
 import mak.app.anikloud.core.remote.dto.DataDTO
 import mak.app.anikloud.domain.model.Anime
 
@@ -31,6 +32,14 @@ internal fun List<DataDTO>.toEntities() = this.map { it.toEntity() }
 internal fun List<DataDTO>.toAiringEntities(page: Int) = this.map { it.toAiringEntity(page) }
 
 private fun DataDTO.toAiringEntity(page: Int) = AiringAnimeEntity(
+    id = 0L,
+    anime_id = id!!,
+    page = page
+)
+
+internal fun List<DataDTO>.toTrendingEntities(page: Int) = this.map { it.toTrendingEntity(page) }
+
+private fun DataDTO.toTrendingEntity(page: Int) = TrendingAnimeEntity(
     id = 0L,
     anime_id = id!!,
     page = page

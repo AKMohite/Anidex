@@ -11,8 +11,14 @@ SELECT animes.* FROM trending_animes INNER JOIN animes ON animes.id = trending_a
 insertAnime:
 INSERT OR IGNORE INTO trending_animes (id, anime_id, page) VALUES (nullif(:id, 0), :anime_id, :page);
 
+update:
+UPDATE trending_animes SET `anime_id` = :animeId, `page` = :page WHERE id = :id;
+
 deletePage:
 DELETE FROM trending_animes WHERE page=:page;
+
+delete:
+DELETE FROM trending_animes WHERE id=:id;
 
 deleteAll:
 DELETE FROM trending_animes;

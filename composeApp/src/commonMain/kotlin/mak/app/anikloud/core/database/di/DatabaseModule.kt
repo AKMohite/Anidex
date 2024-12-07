@@ -11,6 +11,8 @@ import mak.app.anikloud.core.database.dao.AiringAnimeDAO
 import mak.app.anikloud.core.database.dao.AnimeDAO
 import mak.app.anikloud.core.database.dao.SQLDelightAiringAnimeDAO
 import mak.app.anikloud.core.database.dao.SQLDelightAnimeDAO
+import mak.app.anikloud.core.database.dao.SQLDelightTrendingAnimeDAO
+import mak.app.anikloud.core.database.dao.TrendingAnimeDAO
 import org.koin.dsl.module
 
 internal val databaseModule = module {
@@ -18,5 +20,6 @@ internal val databaseModule = module {
     single<DatabaseTransactionRunner> { SQLDatabaseTransactionRunner(get()) }
     single<AnimeDAO> { SQLDelightAnimeDAO(db = get()) }
     single<AiringAnimeDAO> { SQLDelightAiringAnimeDAO(db = get(), dispatcher = get())  }
+    single<TrendingAnimeDAO> { SQLDelightTrendingAnimeDAO(db = get(), dispatcher = get())  }
     single<LastSyncDAO> { SQLDelightLastSyncDAO(db = get(), dispatcher = get())  }
 }

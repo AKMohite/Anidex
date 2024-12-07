@@ -12,17 +12,17 @@ import kotlinx.coroutines.launch
 import mak.app.anikloud.core.common.ui.base.BaseViewModel
 import mak.app.anikloud.core.common.ui.toUiText
 import mak.app.anikloud.core.common.util.Dispatcher
-import mak.app.anikloud.data.usecase.refresh.RefreshAiringAnimeUseCase
 import mak.app.anikloud.data.usecase.fetch.GetAiringAnimeUseCase
 import mak.app.anikloud.data.usecase.fetch.GetBannerUseCase
-import mak.app.anikloud.data.usecase.refresh.RefreshTrendingAnimeUseCase
+import mak.app.anikloud.data.usecase.fetch.GetTrendingAnimeUseCase
 import mak.app.anikloud.domain.usecase.RefreshAnimeUsecase
 
 internal class DiscoverViewModel(
     private val refreshAiringAnimeUseCase: RefreshAnimeUsecase,
     private val refreshTrendingAnimeUseCase: RefreshAnimeUsecase,
-    private val getAiringAnimeUseCase: GetAiringAnimeUseCase,
     private val getBannerUseCase: GetBannerUseCase,
+    private val getAiringAnimeUseCase: GetAiringAnimeUseCase,
+    private val getTrendingAnimeUseCase: GetTrendingAnimeUseCase,
     dispatcher: Dispatcher
 ): BaseViewModel(
     dispatcher = dispatcher

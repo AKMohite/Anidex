@@ -3,6 +3,7 @@ package mak.app.anikloud.data.di
 import mak.app.anikloud.data.di.DataQualifiers.AIRING_STORE
 import mak.app.anikloud.data.di.DataQualifiers.GET_AIRING
 import mak.app.anikloud.data.di.DataQualifiers.GET_BANNER
+import mak.app.anikloud.data.di.DataQualifiers.GET_TRENDING
 import mak.app.anikloud.data.di.DataQualifiers.REFRESH_AIRING
 import mak.app.anikloud.data.di.DataQualifiers.REFRESH_TRENDING
 import mak.app.anikloud.data.di.DataQualifiers.TRENDING_STORE
@@ -13,6 +14,7 @@ import mak.app.anikloud.data.store.TrendingAnimeStore
 import mak.app.anikloud.data.usecase.refresh.RefreshAiringAnimeUseCase
 import mak.app.anikloud.data.usecase.fetch.GetAiringAnimeUseCase
 import mak.app.anikloud.data.usecase.fetch.GetBannerUseCase
+import mak.app.anikloud.data.usecase.fetch.GetTrendingAnimeUseCase
 import mak.app.anikloud.data.usecase.refresh.RefreshTrendingAnimeUseCase
 import mak.app.anikloud.domain.repository.AnimeRepository
 import mak.app.anikloud.domain.usecase.RefreshAnimeUsecase
@@ -27,7 +29,7 @@ val dataModule = module {
         animeDAO = get(),
         airingAnimeDAO = get(),
         lastSyncDao = get(),
-        transactionRunner =get(),
+        transactionRunner = get(),
         dispatcher = get()
     ) }
 
@@ -36,7 +38,7 @@ val dataModule = module {
         animeDAO = get(),
         trendingAnimeDAO = get(),
         lastSyncDao = get(),
-        transactionRunner =get(),
+        transactionRunner = get(),
         dispatcher = get()
     ) }
     // endregion
@@ -45,6 +47,7 @@ val dataModule = module {
     // region usecase
     factory(qualifier = GET_BANNER) { GetBannerUseCase(get()) }
     factory(qualifier = GET_AIRING) { GetAiringAnimeUseCase(get()) }
+    factory(qualifier = GET_TRENDING) { GetTrendingAnimeUseCase(get()) }
     factory<RefreshAnimeUsecase>(qualifier = REFRESH_AIRING) { RefreshAiringAnimeUseCase(get(AIRING_STORE)) }
     factory<RefreshAnimeUsecase>(qualifier = REFRESH_TRENDING) { RefreshTrendingAnimeUseCase(get(TRENDING_STORE)) }
     // endregion

@@ -11,6 +11,7 @@ internal object DataQualifiers {
     // region get usecase
     val GET_BANNER = named("koin-get-banner")
     val GET_AIRING = named("koin-get-airing")
+    val GET_TRENDING = named("koin-get-trending")
     // endregion
 
     // region refresh usecase

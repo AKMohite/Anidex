@@ -4,12 +4,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import mak.app.anikloud.domain.model.DiscoverCategory
+import mak.app.anikloud.feature.discover.components.AnimeSection
 import mak.app.anikloud.feature.discover.components.AnimePager
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -56,7 +56,11 @@ internal fun DiscoverScreen(
                     onAnimeClick = { anime -> onAction(DiscoverAction.OnAnimeClick(anime)) }
                 )
             } else {
-                Text(section.type.value)
+                AnimeSection(
+                    modifier = Modifier
+                        .fillParentMaxWidth(),
+                    section = section
+                )
             }
         }
     }

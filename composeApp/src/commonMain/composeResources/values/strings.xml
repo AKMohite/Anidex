@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Anikloud</string>
 
+    <string name="more_btn_txt">See all</string>
     <string name="error_disk_full">Oops, it seems like your disk is full.</string>
     <string name="error_unknown">Oops, something went wrong.</string>
     <string name="error_request_timeout">The request timed out.</string>

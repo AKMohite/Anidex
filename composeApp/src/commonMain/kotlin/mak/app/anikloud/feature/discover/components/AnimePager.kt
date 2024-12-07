@@ -36,7 +36,8 @@ import mak.app.anikloud.domain.model.Anime
 @Composable
 internal fun AnimePager(
     animes: List<Anime> = emptyList(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onAnimeClick: (anime: Anime) -> Unit
 ) {
     val pagerState = rememberPagerState(pageCount = { animes.size })
     val coroutineScope = rememberCoroutineScope()
@@ -68,7 +69,7 @@ internal fun AnimePager(
                 modifier = Modifier
                     .fillMaxWidth(),
                 anime = animes[index],
-                onAnimeClick = {}
+                onAnimeClick = onAnimeClick
             )
         }
         PagerIndicator(

@@ -17,6 +17,7 @@ import mak.app.anikloud.data.usecase.fetch.GetBannerUseCase
 import mak.app.anikloud.data.usecase.fetch.GetTrendingAnimeUseCase
 import mak.app.anikloud.data.usecase.refresh.RefreshTrendingAnimeUseCase
 import mak.app.anikloud.domain.repository.AnimeRepository
+import mak.app.anikloud.domain.usecase.GetAnimeUsecase
 import mak.app.anikloud.domain.usecase.RefreshAnimeUsecase
 import org.koin.dsl.module
 
@@ -45,9 +46,9 @@ val dataModule = module {
 
 //    TODO: usecase must be domain and not data?
     // region usecase
-    factory(qualifier = GET_BANNER) { GetBannerUseCase(get()) }
-    factory(qualifier = GET_AIRING) { GetAiringAnimeUseCase(get()) }
-    factory(qualifier = GET_TRENDING) { GetTrendingAnimeUseCase(get()) }
+    factory<GetAnimeUsecase>(qualifier = GET_BANNER) { GetBannerUseCase(get()) }
+    factory<GetAnimeUsecase>(qualifier = GET_AIRING) { GetAiringAnimeUseCase(get()) }
+    factory<GetAnimeUsecase>(qualifier = GET_TRENDING) { GetTrendingAnimeUseCase(get()) }
     factory<RefreshAnimeUsecase>(qualifier = REFRESH_AIRING) { RefreshAiringAnimeUseCase(get(AIRING_STORE)) }
     factory<RefreshAnimeUsecase>(qualifier = REFRESH_TRENDING) { RefreshTrendingAnimeUseCase(get(TRENDING_STORE)) }
     // endregion

@@ -10,7 +10,7 @@ import mak.app.anikloud.domain.usecase.GetAnimeUsecase
 
 internal class GetAiringAnimeUseCase(
     private val airingAnimeDAO: AiringAnimeDAO
-): GetAnimeUsecase<Int, Flow<List<Anime>>> {
+): GetAnimeUsecase {
     override fun invoke(params: Int): Flow<List<Anime>> {
         return airingAnimeDAO.entriesObservable(params)
             .distinctUntilChanged()

@@ -11,7 +11,7 @@ import mak.app.anikloud.domain.usecase.GetAnimeUsecase
 
 internal class GetTrendingAnimeUseCase(
     private val trendingAnimeDao: TrendingAnimeDAO
-): GetAnimeUsecase<Int, Flow<List<Anime>>> {
+): GetAnimeUsecase {
     override fun invoke(params: Int): Flow<List<Anime>> {
         return trendingAnimeDao.entriesObservable(params)
             .distinctUntilChanged()

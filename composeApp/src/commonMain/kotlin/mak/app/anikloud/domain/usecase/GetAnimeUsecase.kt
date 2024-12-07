@@ -1,5 +1,8 @@
 package mak.app.anikloud.domain.usecase
 
-internal interface GetAnimeUsecase<P, R> {
-    operator fun invoke(params: P): R
+import kotlinx.coroutines.flow.Flow
+import mak.app.anikloud.domain.model.Anime
+
+internal interface GetAnimeUsecase {
+    operator fun invoke(params: Int): Flow<List<Anime>>
 }

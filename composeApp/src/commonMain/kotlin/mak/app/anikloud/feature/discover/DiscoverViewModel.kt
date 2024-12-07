@@ -48,31 +48,8 @@ internal class DiscoverViewModel(
     }
 
     private fun initiateDiscover() {
-
         refreshAnimes()
         getAnimes()
-
-//        viewModelScope.launch {
-//            _state.update { it.copy(isLoading = true) }
-////            TODO change coroutine dispatchers
-//            repository.getAiringAnime()
-//                .onSuccess { animes ->
-//                    _state.update {
-//                        it.copy(
-//                            isLoading = false,
-//                            airingAnime = animes
-//                        )
-//                    }
-//                }
-//                .onError { error ->
-//                    _state.update {
-//                        it.copy(
-//                            isLoading = false,
-//                            errorMessage = error.toUiText()
-//                        )
-//                    }
-//                }
-//        }
     }
 
     private fun getAnimes() {
@@ -97,9 +74,6 @@ internal class DiscoverViewModel(
     private fun refreshAnimes() {
         uiScope.launch {
             refreshAiringAnimeUseCase(1)
-        }.invokeOnCompletion {
-//            println(it)
-//            println(it?.toUiText())
         }
     }
 

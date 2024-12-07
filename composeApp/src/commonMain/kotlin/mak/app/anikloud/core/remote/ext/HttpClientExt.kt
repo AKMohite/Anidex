@@ -5,6 +5,7 @@ import io.ktor.client.call.body
 import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.statement.HttpResponse
 import io.ktor.util.network.UnresolvedAddressException
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
 import kotlinx.io.IOException
 import mak.app.anikloud.core.common.model.AppResult
@@ -18,8 +19,29 @@ class RemoteException(
     val throwable: Throwable? = null
 ): RuntimeException(throwable?.message ?: msg)
 
+suspend inline fun <reified T> retry(
+    times: Int,
+    initialDelayMillis: Long = 100,
+    maxDelayMillis: Long = 1000,
+    factor: Double = 2.0,
+    block: suspend () -> T
+): T {
+    var currentDelay = initialDelayMillis
+    repeat(times) {
+        try {
+            return block()
+        } catch (exception: Exception) {
+//            log exception
+        }
+        delay(currentDelay)
+        currentDelay = (currentDelay * factor).toLong().coerceAtMost(maxDelayMillis)
+    }
+    return block() // last attempt
+}
+
 suspend inline fun <reified T> safeKtorCall(execute: () -> HttpResponse): T {
     val response = try {
+//        retry(3) { execute() }
         execute()
     } catch (e: SocketTimeoutException) {
         throw RemoteException(type = DataError.Remote.REQUEST_TIMEOUT, throwable = e)

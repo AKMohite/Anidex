@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `upcoming_animes` (
     FOREIGN KEY(`anime_id`) REFERENCES `animes`(`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-getAiringAnimes:
+getUpcomingAnimes:
 SELECT animes.* FROM upcoming_animes INNER JOIN animes ON animes.id = upcoming_animes.anime_id ORDER BY page ASC;
 
 insertAnime:

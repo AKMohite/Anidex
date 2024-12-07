@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS `trending_animes` (
     FOREIGN KEY(`anime_id`) REFERENCES `animes`(`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-getAiringAnimes:
-SELECT animes.* FROM trending_animes INNER JOIN animes ON animes.id = trending_animes.anime_id ORDER BY page ASC;
+getTrendingAnimes:
+SELECT animes.* FROM trending_animes INNER JOIN animes ON animes.id = trending_animes.anime_id ORDER BY page ASC LIMIT :limit OFFSET :offset;
 
 insertAnime:
 INSERT OR IGNORE INTO trending_animes (id, anime_id, page) VALUES (nullif(:id, 0), :anime_id, :page);

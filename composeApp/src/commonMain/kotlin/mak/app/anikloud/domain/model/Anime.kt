@@ -5,4 +5,9 @@ data class Anime(
     val title: String,
     val coverImage: String? = null,
     val poster: String? = null
-)
+) {
+    val coverPage: String?
+        get() {
+            return coverImage ?: poster
+        }
+}

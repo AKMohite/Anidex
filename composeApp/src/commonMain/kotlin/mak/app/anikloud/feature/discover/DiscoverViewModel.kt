@@ -30,11 +30,22 @@ internal class DiscoverViewModel(
     dispatcher = dispatcher
 ) {
     private var isFetchingAnime = false
+    private var isRefreshingAnime = false
     private val _state = MutableStateFlow(DiscoverState())
     val state = _state.asStateFlow()
 
     init {
+        initiateSection()
         initiateDiscover()
+    }
+
+    private fun initiateSection() {
+        uiScope.launch {
+            val sections = DiscoverCategory.entries.map {
+                DiscoverSection(type = it)
+            }
+            _state.update { it.copy(sections = sections) }
+        }
     }
 
     override fun handleError(exception: Throwable) {
@@ -83,8 +94,7 @@ internal class DiscoverViewModel(
                     .map { (category, animes) ->
                         DiscoverSection(
                             type = category,
-                            animes = animes,
-                            //                            isLoading =
+                            animes = animes
                         )
                     }
                 sections
@@ -95,29 +105,23 @@ internal class DiscoverViewModel(
             }
             .onCompletion { isFetchingAnime = true }
             .launchIn(uiScope)
-
-//        getBannerUseCase(1)
-//            .onStart { isFetchingAnime = true }
-//            .onEach { animes ->
-//                _state.update {
-//                    it.copy(airingAnime = animes)
-//                }
-//            }
-//            .onCompletion { isFetchingAnime = true }
-//            .catch { throwable ->
-//                _state.update {
-//                    it.copy(
-//                        isLoading = false,
-//                        errorMessage = throwable.toUiText()
-//                    )
-//                }
-//            }.launchIn(uiScope)
     }
 
     private fun refreshAnimes() {
+        if (isRefreshingAnime) return
+
         uiScope.launch {
+            isRefreshingAnime = true
+            _state.update { currentState -> currentState.copy(
+                sections = currentState.sections.map { section -> section.copy(isLoading = true) }
+            ) }
             refreshAiringAnimeUseCase(1)
             refreshTrendingAnimeUseCase(1)
+        }.invokeOnCompletion {
+            isRefreshingAnime = false
+            _state.update { currentState -> currentState.copy(
+                sections = currentState.sections.map { section -> section.copy(isLoading = false) }
+            ) }
         }
     }
 

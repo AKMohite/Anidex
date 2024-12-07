@@ -7,7 +7,7 @@ import mak.app.anikloud.domain.model.DiscoverCategory
 
 internal data class DiscoverSection(
     val type: DiscoverCategory,
-    val animes: List<Anime>,
+    val animes: List<Anime> = emptyList(),
     val isLoading: Boolean = false
 )
 

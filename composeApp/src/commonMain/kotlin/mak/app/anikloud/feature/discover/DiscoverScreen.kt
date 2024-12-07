@@ -33,7 +33,7 @@ internal fun DiscoverScreen(
 ) {
     LazyColumn {
 //        item("Top Banner") {
-//            val banners = state.sections.firstOrNull { it.type == DiscoverCategory.BANNER }
+//            val banners = state.categorisedAnime.firstOrNull { it.type == DiscoverCategory.BANNER }
 //            if (banners != null && banners.animes.isNotEmpty()) {
 //                AnimePager(
 //                    modifier = Modifier
@@ -43,7 +43,7 @@ internal fun DiscoverScreen(
 //                )
 //            }
 //        }
-        items(state.sections, key = { section -> section.type.id }) { section ->
+        items(state.categorisedAnime, key = { section -> section.type.id }) { section ->
             if (section.type == DiscoverCategory.BANNER) {
                 AnimePager(
                     modifier = Modifier

@@ -8,7 +8,7 @@ import mak.app.anikloud.core.common.util.Dispatcher
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_DATA_LIMIT
 import mak.app.anikloud.local.Airing_animes
 
-internal typealias AiringEntity = Airing_animes
+internal typealias AiringAnimeEntity = Airing_animes
 
 internal class SQLDelightAiringAnimeDAO(
     db: AnikloudDatabase,
@@ -17,23 +17,23 @@ internal class SQLDelightAiringAnimeDAO(
 
     private val query = db.airing_anime_entityQueries
 
-    override fun insert(entities: List<AiringEntity>) {
+    override fun insert(entities: List<AiringAnimeEntity>) {
         for (chunks in entities.chunked(QUERY_DATA_LIMIT)) {
             chunkInsert(chunks)
         }
     }
 
-    private fun chunkInsert(chunks: List<AiringEntity>) {
+    private fun chunkInsert(chunks: List<AiringAnimeEntity>) {
         for (entity in chunks) {
             insert(entity)
         }
     }
 
-    override fun update(entity: AiringEntity) {
+    override fun update(entity: AiringAnimeEntity) {
         query.update(animeId = entity.anime_id, page = entity.page, id = entity.id)
     }
 
-    override fun insert(entity: AiringEntity) {
+    override fun insert(entity: AiringAnimeEntity) {
         query.insertAnime(id = entity.id, anime_id = entity.anime_id, page = entity.page)
     }
 
@@ -47,7 +47,7 @@ internal class SQLDelightAiringAnimeDAO(
         query.deletePage(page)
     }
 
-    override fun delete(entity: AiringEntity) {
+    override fun delete(entity: AiringAnimeEntity) {
         query.delete(entity.id)
     }
 
@@ -57,5 +57,5 @@ internal class SQLDelightAiringAnimeDAO(
 
 }
 
-internal interface AiringAnimeDAO: EntityDAO<AiringEntity> {
+internal interface AiringAnimeDAO: EntityDAO<AiringAnimeEntity> {
 }

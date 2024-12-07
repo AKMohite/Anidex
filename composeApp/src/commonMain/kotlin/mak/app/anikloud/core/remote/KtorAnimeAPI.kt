@@ -63,7 +63,7 @@ internal class KtorAnimeAPI(
         }
     }
 
-    override suspend fun highestRatedAnime(page: Int): DiscoverAnimeDTO {
+    override suspend fun getTopRatedAnime(page: Int): DiscoverAnimeDTO {
         return safeKtorCall<DiscoverAnimeDTO> {
             client.get {
                 url("${API_BASE_EXT}/anime")
@@ -75,7 +75,7 @@ internal class KtorAnimeAPI(
         }
     }
 
-    override suspend fun popularAnime(page: Int): DiscoverAnimeDTO {
+    override suspend fun getPopularAnime(page: Int): DiscoverAnimeDTO {
         return safeKtorCall<DiscoverAnimeDTO> {
             client.get {
                 url("${API_BASE_EXT}/anime")
@@ -87,7 +87,7 @@ internal class KtorAnimeAPI(
         }
     }
 
-    override suspend fun anticipatedAnime(page: Int): DiscoverAnimeDTO {
+    override suspend fun getAnticipatedAnime(page: Int): DiscoverAnimeDTO {
         return safeKtorCall<DiscoverAnimeDTO> {
             client.get {
                 url("${API_BASE_EXT}/anime")

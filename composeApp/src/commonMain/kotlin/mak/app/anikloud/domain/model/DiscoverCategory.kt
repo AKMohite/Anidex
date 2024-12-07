@@ -8,7 +8,6 @@ internal enum class DiscoverCategory(
     AIRING(2, "Airing"),
     TRENDING(3, "Trending"),
     MOST_POPULAR(4, "Popular"),
-    HIGHEST_RATED(5, "Top rated"),
+    TOP_RATED(5, "Top rated"),
     UPCOMING(6, "Anticipated")
-
 }

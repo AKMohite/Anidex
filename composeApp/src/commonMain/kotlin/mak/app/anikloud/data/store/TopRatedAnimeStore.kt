@@ -4,36 +4,36 @@ import mak.app.anikloud.core.common.util.Dispatcher
 import mak.app.anikloud.core.database.DatabaseTransactionRunner
 import mak.app.anikloud.core.database.LastSyncDAO
 import mak.app.anikloud.core.database.dao.AnimeDAO
-import mak.app.anikloud.core.database.dao.PopularAnimeDAO
-import mak.app.anikloud.core.database.dao.PopularAnimeEntity
+import mak.app.anikloud.core.database.dao.TopRatedAnimeDAO
+import mak.app.anikloud.core.database.dao.TopRatedAnimeEntity
 import mak.app.anikloud.core.remote.AnimeAPI
 import mak.app.anikloud.core.remote.dto.DataDTO
 import mak.app.anikloud.core.remote.dto.DiscoverAnimeDTO
-import mak.app.anikloud.data.toPopularEntities
+import mak.app.anikloud.data.toTopRatedEntities
 import mak.app.anikloud.domain.model.SyncRequest
 
 
-internal class PopularAnimeStore(
+internal class TopRatedAnimeStore(
     private val api: AnimeAPI,
     animeDAO: AnimeDAO,
-    popularAnimeDAO: PopularAnimeDAO,
+    topRatedAnimeDAO: TopRatedAnimeDAO,
     lastSyncDao: LastSyncDAO,
     transactionRunner: DatabaseTransactionRunner,
     dispatcher: Dispatcher
-): OfflineAnimeStore<PopularAnimeEntity>(
+): OfflineAnimeStore<TopRatedAnimeEntity>(
     animeDAO = animeDAO,
-    tableDAO = popularAnimeDAO,
+    tableDAO = topRatedAnimeDAO,
     lastSyncDao = lastSyncDao,
     transactionRunner = transactionRunner,
     dispatcher = dispatcher,
-    syncRequest = SyncRequest.POPULAR_ANIME
+    syncRequest = SyncRequest.TOP_RATED_ANIME
 ) {
-    override fun mapEntities(page: Int, data: List<DataDTO>): List<PopularAnimeEntity> {
-        return data.toPopularEntities(page)
+    override fun mapEntities(page: Int, data: List<DataDTO>): List<TopRatedAnimeEntity> {
+        return data.toTopRatedEntities(page)
     }
 
     override suspend fun apiCall(page: Int): DiscoverAnimeDTO {
-        return api.getPopularAnime(page)
+        return api.getTopRatedAnime(page)
     }
 
 }

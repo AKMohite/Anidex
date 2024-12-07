@@ -17,15 +17,15 @@ internal interface AnimeAPI {
         page: Int = 1
     ): DiscoverAnimeDTO
 
-    suspend fun highestRatedAnime(
+    suspend fun getTopRatedAnime(
         page: Int = 1
     ): DiscoverAnimeDTO
 
-    suspend fun popularAnime(
+    suspend fun getPopularAnime(
         page: Int
     ): DiscoverAnimeDTO
 
-    suspend fun anticipatedAnime(
+    suspend fun getAnticipatedAnime(
         page: Int
     ): DiscoverAnimeDTO
 }

@@ -30,7 +30,7 @@ internal fun PagerIndicator(
     ) {
         for (page in 0 until pageCount) {
             val size = if (currentPage == page) 16.dp else 6.dp
-            val color = if (currentPage == page) MaterialTheme.colors.secondaryVariant else MaterialTheme.colors.secondary
+            val color = if (currentPage == page) MaterialTheme.colors.surface else MaterialTheme.colors.surface.copy(alpha = 0.6f)
             Box(
                 modifier = Modifier
                     .clickable { onClick(page) }

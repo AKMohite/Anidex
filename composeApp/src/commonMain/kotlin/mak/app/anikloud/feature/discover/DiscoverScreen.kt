@@ -47,8 +47,7 @@ internal fun DiscoverScreen(
             if (section.type == DiscoverCategory.BANNER) {
                 AnimePager(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(4.dp),
+                        .fillMaxWidth(),
                     animes = section.animes,
                     onAnimeClick = { anime -> onAction(DiscoverAction.OnAnimeClick(anime)) }
                 )

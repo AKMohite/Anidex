@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
@@ -50,17 +51,11 @@ internal fun AnimePager(
         }
     }
 
-    Column(
+    Box(
         modifier = modifier
-            .background(
-                color = MaterialTheme.colors.primarySurface,
-                shape = RoundedCornerShape(8.dp)
-            ).padding(
+            .padding(
                 bottom = 8.dp
-            ).clip(
-                shape = RoundedCornerShape(8.dp)
-            ),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+            )
     ) {
         HorizontalPager(
             state = pagerState
@@ -75,7 +70,9 @@ internal fun AnimePager(
         PagerIndicator(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight(),
+                .wrapContentHeight()
+                .align(Alignment.BottomCenter)
+                .background(MaterialTheme.colors.onSurface.copy(alpha = 0.8f)),
             pageCount = pagerState.pageCount,
             currentPage = pagerState.currentPage,
             onClick = { page ->

@@ -1,7 +1,6 @@
 package mak.app.anikloud.core.remote
 
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.url
@@ -16,8 +15,10 @@ import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_DATA_LIMIT
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_INCLUDE
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_INCLUDE_GENRE
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_LIMIT
+import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_PAGE_LIMIT
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_OFFSET
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_SORT
+import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_SORT_RATING
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_SORT_USER_COUNT
 import mak.app.anikloud.core.remote.utils.APIConstants.QUERY_STATUS
 
@@ -32,10 +33,10 @@ internal class KtorAnimeAPI(
             client.get {
                 url("${API_BASE_EXT}/anime")
                 parameter(QUERY_STATUS, QUERY_CURRENT)
-                parameter(QUERY_LIMIT, QUERY_DATA_LIMIT)
+                parameter(QUERY_PAGE_LIMIT, QUERY_DATA_LIMIT)
                 parameter(QUERY_OFFSET, getPageOffset(page))
                 parameter(QUERY_SORT, QUERY_SORT_USER_COUNT)
-                parameter(QUERY_INCLUDE, QUERY_INCLUDE_GENRE)
+//                parameter(QUERY_INCLUDE, QUERY_INCLUDE_GENRE)
             }
         }
     }
@@ -45,10 +46,56 @@ internal class KtorAnimeAPI(
             client.get {
                 url("${API_BASE_EXT}/anime")
                 parameter(QUERY_STATUS, QUERY_CURRENT)
-                parameter(QUERY_LIMIT, QUERY_DATA_LIMIT)
+                parameter(QUERY_PAGE_LIMIT, QUERY_DATA_LIMIT)
                 parameter(QUERY_OFFSET, getPageOffset(page))
                 parameter(QUERY_SORT, QUERY_SORT_USER_COUNT)
-                parameter(QUERY_INCLUDE, QUERY_INCLUDE_GENRE)
+//                parameter(QUERY_INCLUDE, QUERY_INCLUDE_GENRE)
+            }
+        }
+    }
+
+    override suspend fun getTrendingAnime(page: Int): DiscoverAnimeDTO {
+        return safeKtorCall<DiscoverAnimeDTO> {
+            client.get {
+                url("${API_BASE_EXT}/trending/anime")
+                parameter(QUERY_LIMIT, 50)
+            }
+        }
+    }
+
+    override suspend fun highestRatedAnime(page: Int): DiscoverAnimeDTO {
+        return safeKtorCall<DiscoverAnimeDTO> {
+            client.get {
+                url("${API_BASE_EXT}/anime")
+                parameter(QUERY_PAGE_LIMIT, QUERY_DATA_LIMIT)
+                parameter(QUERY_OFFSET, getPageOffset(page))
+                parameter(QUERY_SORT, QUERY_SORT_RATING)
+//                parameter(QUERY_INCLUDE, QUERY_INCLUDE_GENRE)
+            }
+        }
+    }
+
+    override suspend fun popularAnime(page: Int): DiscoverAnimeDTO {
+        return safeKtorCall<DiscoverAnimeDTO> {
+            client.get {
+                url("${API_BASE_EXT}/anime")
+                parameter(QUERY_PAGE_LIMIT, QUERY_DATA_LIMIT)
+                parameter(QUERY_OFFSET, getPageOffset(page))
+                parameter(QUERY_SORT, QUERY_SORT_USER_COUNT)
+//                parameter(QUERY_INCLUDE, QUERY_INCLUDE_GENRE)
+            }
+        }
+    }
+
+    override suspend fun anticipatedAnime(page: Int): DiscoverAnimeDTO {
+        return safeKtorCall<DiscoverAnimeDTO> {
+            client.get {
+                url("${API_BASE_EXT}/anime")
+                parameter(QUERY_STATUS, QUERY_CURRENT)
+                parameter(QUERY_PAGE_LIMIT, QUERY_DATA_LIMIT)
+                parameter(QUERY_OFFSET, getPageOffset(page))
+                parameter(QUERY_SORT, QUERY_SORT_USER_COUNT)
+//                parameter(QUERY_INCLUDE, QUERY_INCLUDE_GENRE)
             }
         }
     }

@@ -1,4 +1,4 @@
-package mak.app.anikloud.data.usecase.update
+package mak.app.anikloud.data.usecase.fetch
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged

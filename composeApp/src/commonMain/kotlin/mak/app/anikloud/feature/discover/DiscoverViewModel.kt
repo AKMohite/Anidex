@@ -22,8 +22,10 @@ import mak.app.anikloud.domain.usecase.RefreshAnimeUsecase
 internal class DiscoverViewModel(
     private val refreshAiringAnimeUseCase: RefreshAnimeUsecase,
     private val refreshTrendingAnimeUseCase: RefreshAnimeUsecase,
+    private val refreshPopularAnimeUseCase: RefreshAnimeUsecase,
     private val getBannerUseCase: GetAnimeUsecase,
     private val getAiringAnimeUseCase: GetAnimeUsecase,
+    private val getPopularAnimeUseCase: GetAnimeUsecase,
     private val getTrendingAnimeUseCase: GetAnimeUsecase,
     dispatcher: Dispatcher
 ): BaseViewModel(
@@ -75,8 +77,8 @@ internal class DiscoverViewModel(
             DiscoverCategory.BANNER -> getBannerUseCase(1)
             DiscoverCategory.AIRING -> getAiringAnimeUseCase(1)
             DiscoverCategory.TRENDING -> getTrendingAnimeUseCase(1)
+            DiscoverCategory.MOST_POPULAR -> getPopularAnimeUseCase(1)
             else -> getAiringAnimeUseCase(1)
-//            DiscoverCategory.MOST_POPULAR -> TODO()
 //            DiscoverCategory.HIGHEST_RATED -> TODO()
 //            DiscoverCategory.UPCOMING -> TODO()
         }
@@ -117,6 +119,7 @@ internal class DiscoverViewModel(
             ) }
             refreshAiringAnimeUseCase(1)
             refreshTrendingAnimeUseCase(1)
+            refreshPopularAnimeUseCase(1)
         }.invokeOnCompletion {
             isRefreshingAnime = false
             _state.update { currentState -> currentState.copy(

@@ -5,17 +5,20 @@ import org.koin.core.qualifier.named
 internal object DataQualifiers {
     // region store
     val AIRING_STORE = named("koin-airing-store")
+    val POPULAR_STORE = named("koin-popular-store")
     val TRENDING_STORE = named("koin-trending-store")
     // endregion
 
     // region get usecase
     val GET_BANNER = named("koin-get-banner")
     val GET_AIRING = named("koin-get-airing")
+    val GET_POPULAR = named("koin-get-popular")
     val GET_TRENDING = named("koin-get-trending")
     // endregion
 
     // region refresh usecase
     val REFRESH_AIRING = named("koin-refresh-airing")
+    val REFRESH_POPULAR = named("koin-refresh-popular")
     val REFRESH_TRENDING = named("koin-refresh-trending")
     // endregion
 }

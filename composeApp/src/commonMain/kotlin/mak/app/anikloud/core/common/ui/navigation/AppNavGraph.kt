@@ -1,5 +1,8 @@
 package mak.app.anikloud.core.common.ui.navigation
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -20,6 +23,13 @@ internal fun AppNavGraph(
     ) {
         composable("discover") {
             DiscoverRoute()
+        }
+        composable("anime-detail") {
+            Text(
+                style = MaterialTheme.typography.h5,
+                modifier = Modifier.fillMaxSize(),
+                text = "Anime details for specific anime"
+            )
         }
     }
 }

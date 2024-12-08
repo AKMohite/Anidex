@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import io.ktor.client.utils.EmptyContent
+import mak.app.anikloud.core.common.ui.navigation.AppRoute.*
 import mak.app.anikloud.feature.discover.DiscoverRoute
 
 @Composable
@@ -19,18 +21,33 @@ internal fun AppNavGraph(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = "discover"
+        startDestination = Discover
     ) {
-        composable("discover") {
+        composable<Discover> {
             DiscoverRoute()
         }
-        composable("anime-detail") {
-            Text(
-                style = MaterialTheme.typography.h5,
-                modifier = Modifier.fillMaxSize(),
-                text = "Anime details for specific anime"
-            )
+
+        composable<Search> {
+            EmptyContent(Search)
         }
+
+        composable<Watchlist> { EmptyContent(Settings) }
+
+        composable<Settings> { EmptyContent(Settings) }
+
+        composable<AnimeDetail> { EmptyContent(AnimeDetail(0)) }
     }
+}
+
+@Composable
+private fun EmptyContent(
+    route: AppRoute,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        modifier = modifier
+            .fillMaxSize(),
+        text = "in progress: $route"
+    )
 }
 

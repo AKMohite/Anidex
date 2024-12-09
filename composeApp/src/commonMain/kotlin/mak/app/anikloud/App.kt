@@ -1,16 +1,21 @@
 package mak.app.anikloud
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import mak.app.anikloud.core.common.designsystem.AdaptiveLayoutSize
 import mak.app.anikloud.core.common.designsystem.AppTheme
+import mak.app.anikloud.core.common.designsystem.DeviceWindowSize
 import mak.app.anikloud.core.common.ui.navigation.AppBottomBar
 import mak.app.anikloud.core.common.ui.navigation.AppDestination
 import mak.app.anikloud.core.common.ui.navigation.AppNavGraph
@@ -55,11 +60,17 @@ internal fun RootContainer() {
 //            .background(color = bottomNavBarBgColor)
             .systemBarsPadding()
     ) { paddingValues ->
-        AppNavGraph(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-            navController = navController
-        )
+        Row {
+            AnimatedVisibility(listOf(AdaptiveLayoutSize.Medium, AdaptiveLayoutSize.Expanded).contains(
+                DeviceWindowSize.current)) {
+                Text("Side bar")
+            }
+            AppNavGraph(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                navController = navController
+            )
+        }
     }
 }

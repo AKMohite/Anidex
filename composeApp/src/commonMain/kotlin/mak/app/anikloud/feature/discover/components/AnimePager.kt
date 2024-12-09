@@ -36,6 +36,7 @@ import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import kotlinx.coroutines.delay
@@ -150,8 +151,9 @@ private fun AnimePage(
                 modifier = Modifier.padding(vertical = 8.dp)
                     .align(Alignment.Bottom),
                 text = anime.title,
-                style = MaterialTheme.typography.body1,
-                fontWeight = FontWeight.Bold
+                style = MaterialTheme.typography.h6,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }

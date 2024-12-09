@@ -21,6 +21,8 @@ import anikloud.composeapp.generated.resources.nav_bar_discover_title
 import anikloud.composeapp.generated.resources.nav_bar_search_title
 import anikloud.composeapp.generated.resources.nav_bar_settings_title
 import anikloud.composeapp.generated.resources.nav_bar_watch_list_title
+import mak.app.anikloud.core.common.designsystem.AdaptiveLayoutSize
+import mak.app.anikloud.core.common.designsystem.DeviceWindowSize
 import mak.app.anikloud.core.common.ui.navigation.AppDestination.DiscoverDestination
 import mak.app.anikloud.core.common.ui.navigation.AppDestination.SearchDestination
 import mak.app.anikloud.core.common.ui.navigation.AppDestination.SettingsDestination
@@ -37,7 +39,7 @@ internal fun AppBottomBar(
 ) {
     val isBottomBarDisplayed = bottomNavItems.any { it.screen.path == currentScreen }
     AnimatedVisibility(
-        visible = isBottomBarDisplayed,
+        visible = DeviceWindowSize.current == AdaptiveLayoutSize.Compact && isBottomBarDisplayed,
         enter = slideInVertically(
             animationSpec = tween(300),
             initialOffsetY = { it }

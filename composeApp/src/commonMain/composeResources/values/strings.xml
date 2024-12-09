@@ -2,6 +2,11 @@
 <resources>
     <string name="app_name">Anikloud</string>
 
+    <string name="nav_bar_discover_title">Discover</string>
+    <string name="nav_bar_search_title">Search</string>
+    <string name="nav_bar_watch_list_title">Watchlist</string>
+    <string name="nav_bar_settings_title">Settings</string>
+
     <string name="more_btn_txt">See all</string>
     <string name="error_disk_full">Oops, it seems like your disk is full.</string>
     <string name="error_unknown">Oops, something went wrong.</string>

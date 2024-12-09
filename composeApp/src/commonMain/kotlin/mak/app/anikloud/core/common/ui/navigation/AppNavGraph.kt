@@ -1,53 +1,51 @@
 package mak.app.anikloud.core.common.ui.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import io.ktor.client.utils.EmptyContent
-import mak.app.anikloud.core.common.ui.navigation.AppRoute.*
+import mak.app.anikloud.core.common.ui.navigation.AppDestination.*
 import mak.app.anikloud.feature.discover.DiscoverRoute
 
 @Composable
 internal fun AppNavGraph(
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    val navController = rememberNavController()
 
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = Discover
+        startDestination = DiscoverDestination.path
     ) {
-        composable<Discover> {
+        composable(DiscoverDestination.path) {
             DiscoverRoute()
         }
 
-        composable<Search> {
-            EmptyContent(Search)
+        composable(SearchDestination.path) {
+            EmptyContent(SearchDestination)
         }
 
-        composable<Watchlist> { EmptyContent(Settings) }
+        composable(WatchlistDestination.path) { EmptyContent(WatchlistDestination) }
 
-        composable<Settings> { EmptyContent(Settings) }
+        composable(SettingsDestination.path) { EmptyContent(SettingsDestination) }
 
-        composable<AnimeDetail> { EmptyContent(AnimeDetail(0)) }
+//        composable<AnimeDetail> { EmptyContent(AnimeDetail(0)) }
     }
 }
 
 @Composable
 private fun EmptyContent(
-    route: AppRoute,
+    route: AppDestination,
     modifier: Modifier = Modifier
 ) {
     Text(
         modifier = modifier
             .fillMaxSize(),
-        text = "in progress: $route"
+        text = "in progress: ${route.path}"
     )
 }
 

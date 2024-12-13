@@ -1,11 +1,13 @@
 package mak.app.anikloud.core.common.ui.navigation
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.NavigationRail
 import androidx.compose.material.NavigationRailItem
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -20,6 +22,9 @@ internal fun AppNavigationRail(
 //    ) {
         NavigationRail(
             modifier = modifier
+//                .border(8.dp, Color.Red, CircleShape)
+//                .widthIn(min = 80.dp)
+                .padding(16.dp)
         ) {
             for (item in bottomNavItems) {
                 NavigationRailItem(

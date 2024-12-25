@@ -14,11 +14,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
@@ -43,10 +42,10 @@ internal fun AnimeSection(
     section: DiscoverSection,
     modifier: Modifier = Modifier
 ) {
-    Card(
+    Surface (
         modifier = modifier
             .padding(vertical = 6.dp),
-        elevation = 2.dp
+        elevation = 2.dp,
     ) {
         Column {
             Row(
@@ -106,7 +105,7 @@ fun AnimeCard(
     Box(
         modifier = modifier
             .background(MaterialTheme.colors.surface.copy(alpha = 0.5f))
-            .clip(RoundedCornerShape(6.dp))
+            .clip(MaterialTheme.shapes.medium)
     ) {
         Text(
             text = title,

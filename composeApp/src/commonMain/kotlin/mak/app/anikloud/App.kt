@@ -1,6 +1,8 @@
 package mak.app.anikloud
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -9,11 +11,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -42,14 +47,13 @@ internal fun RootContainer() {
     val currentDestination = navBackStackEntry?.destination?.route ?: AppDestination.DiscoverDestination.path
     Scaffold(
         bottomBar = {
-//            Box(
-//                modifier = Modifier
-//                    .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-//                    .clip(
-//                        RoundedCornerShape(16.dp)
-//                    )
-////                    .background(bottomNavBarBgColor)
-//            ) {
+            Box(
+                modifier = Modifier
+                    .padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
+                    .clip(MaterialTheme.shapes.large)
+                    .background(Color.Red)
+                    .fillMaxWidth()
+            ) {
                 AppBottomBar(
                     currentScreen = currentDestination,
                     onBottomNavClick = { route ->
@@ -58,9 +62,10 @@ internal fun RootContainer() {
                                 inclusive = AppDestination.DiscoverDestination.path == route.path
                             }
                         }
-                    }
+                    },
+                    modifier = Modifier.fillMaxWidth()
                 )
-//            }
+            }
         },
         modifier = Modifier
 //            .background(color = bottomNavBarBgColor)
@@ -78,6 +83,7 @@ internal fun RootContainer() {
                         }
                     }
                 )
+                Spacer(Modifier.width(4.dp))
             }
             AnimatedVisibility(DeviceWindowSize.current == AdaptiveLayoutSize.Expanded) {
                 AppNavigationDrawer(
@@ -92,8 +98,8 @@ internal fun RootContainer() {
                         }
                     }
                 )
+                Spacer(Modifier.width(4.dp))
             }
-            Spacer(Modifier.width(4.dp))
             AppNavGraph(
                 modifier = Modifier
                     .fillMaxSize()

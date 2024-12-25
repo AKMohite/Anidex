@@ -4,8 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -35,7 +33,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 internal fun AppBottomBar(
     currentScreen: String,
-    onBottomNavClick: (AppDestination) -> Unit
+    onBottomNavClick: (AppDestination) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val isBottomBarDisplayed = bottomNavItems.any { it.screen.path == currentScreen }
     AnimatedVisibility(
@@ -49,25 +48,19 @@ internal fun AppBottomBar(
             targetOffsetY = { it }
         )
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-//                .padding(horizontal = 20.dp)
-//                .padding(bottom = 8.dp)
-//                .clip(RoundedCornerShape(8.dp))
-        ) {
-            AppBottomNavigation(
-                currentDestination = currentScreen,
-                onBottomNavClick = onBottomNavClick
-            )
-        }
+        AppBottomNavigation(
+            currentDestination = currentScreen,
+            onBottomNavClick = onBottomNavClick,
+            modifier = modifier
+        )
     }
 }
 
 @Composable
 private fun AppBottomNavigation(
     currentDestination: String,
-    onBottomNavClick: (AppDestination) -> Unit
+    onBottomNavClick: (AppDestination) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     BottomNavigation(
 //        modifier = Modifier

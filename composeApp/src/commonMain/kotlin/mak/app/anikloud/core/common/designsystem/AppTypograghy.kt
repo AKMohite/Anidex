@@ -1,8 +1,7 @@
 package mak.app.anikloud.core.common.designsystem
 
-import androidx.compose.material.Typography
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -24,91 +23,89 @@ internal fun provideTypography(): Typography {
     )
 
     return Typography(
-        h1 = TextStyle(
-            fontWeight = FontWeight.Black,
-            fontFamily = satoshiFont,
-            fontSize = 57.sp,
-            lineHeight = 64.sp,
-            letterSpacing = -(0.25).sp
+        headlineLarge = TextStyle(
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 32.sp,
+            lineHeight = 40.sp,
+            letterSpacing = 0.sp,
+            fontFamily = satoshiFont
         ),
-        h2 = TextStyle(
-            fontWeight = FontWeight.Black,
-            fontFamily = satoshiFont,
-            fontSize = 45.sp,
-            lineHeight = 52.sp
-        ),
-        h3 = TextStyle(
-            fontWeight = FontWeight.Black,
-            fontFamily = satoshiFont,
-            fontSize = 36.sp,
-            lineHeight = 44.sp
-        ),
-        h4 = TextStyle(
-            fontWeight = FontWeight.Bold,
-            fontFamily = satoshiFont,
+        headlineMedium = TextStyle(
+            fontWeight = FontWeight.SemiBold,
             fontSize = 28.sp,
-            lineHeight = 36.sp
+            lineHeight = 36.sp,
+            letterSpacing = 0.sp,
+            fontFamily = satoshiFont
         ),
-        h5 = TextStyle(
-            fontWeight = FontWeight.Bold,
-            fontFamily = satoshiFont,
+        headlineSmall = TextStyle(
+            fontWeight = FontWeight.SemiBold,
             fontSize = 24.sp,
-            lineHeight = 32.sp
+            lineHeight = 32.sp,
+            letterSpacing = 0.sp,
+            fontFamily = satoshiFont
         ),
-        h6 = TextStyle(
-            fontWeight = FontWeight.Medium,
-            fontFamily = satoshiFont,
+        titleLarge = TextStyle(
+            fontWeight = FontWeight.SemiBold,
             fontSize = 22.sp,
-            lineHeight = 28.sp
+            lineHeight = 28.sp,
+            letterSpacing = 0.sp,
+            fontFamily = satoshiFont
         ),
-        subtitle1 = TextStyle(
-            fontWeight = FontWeight.Medium,
-            fontFamily = satoshiFont,
+        titleMedium = TextStyle(
+            fontWeight = FontWeight.SemiBold,
             fontSize = 16.sp,
             lineHeight = 24.sp,
-            letterSpacing = 0.15.sp
+            letterSpacing = 0.15.sp,
+            fontFamily = satoshiFont
         ),
-        subtitle2 = TextStyle(
-            fontWeight = FontWeight.Medium,
-            fontFamily = satoshiFont,
+        titleSmall = TextStyle(
+            fontWeight = FontWeight.Bold,
             fontSize = 14.sp,
             lineHeight = 20.sp,
-            letterSpacing = 0.1.sp
+            letterSpacing = 0.1.sp,
+            fontFamily = satoshiFont
         ),
-        body1 = TextStyle(
+        bodyLarge = TextStyle(
             fontWeight = FontWeight.Normal,
-            fontFamily = satoshiFont,
             fontSize = 16.sp,
             lineHeight = 24.sp,
-            letterSpacing = 0.5.sp
+            letterSpacing = 0.15.sp,
+            fontFamily = satoshiFont
         ),
-        body2 = TextStyle(
-            fontWeight = FontWeight.Normal,
-            fontFamily = satoshiFont,
+        bodyMedium = TextStyle(
+            fontWeight = FontWeight.Medium,
             fontSize = 14.sp,
             lineHeight = 20.sp,
-            letterSpacing = 0.25.sp
+            letterSpacing = 0.25.sp,
+            fontFamily = satoshiFont
         ),
-        button = TextStyle(
-            fontWeight = FontWeight.Medium,
-            fontFamily = satoshiFont,
-            fontSize = 16.sp,
-            lineHeight = 16.sp,
-            letterSpacing = 0.1.sp
-        ),
-        caption = TextStyle(
-            fontWeight = FontWeight.Normal,
-            fontFamily = satoshiFont,
+        bodySmall = TextStyle(
+            fontWeight = FontWeight.Bold,
             fontSize = 12.sp,
             lineHeight = 16.sp,
-            letterSpacing = 0.4.sp
+            letterSpacing = 0.4.sp,
+            fontFamily = satoshiFont
         ),
-        overline = TextStyle(
-            fontWeight = FontWeight.Normal,
-            fontFamily = satoshiFont,
+        labelLarge = TextStyle(
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 14.sp,
+            lineHeight = 20.sp,
+            letterSpacing = 0.1.sp,
+            fontFamily = satoshiFont
+        ),
+        labelMedium = TextStyle(
+            fontWeight = FontWeight.SemiBold,
             fontSize = 12.sp,
-            lineHeight = 12.sp,
-            letterSpacing = 0.5.sp
-        )
+            lineHeight = 16.sp,
+            letterSpacing = 0.5.sp,
+            fontFamily = satoshiFont
+        ),
+        labelSmall = TextStyle(
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 11.sp,
+            lineHeight = 16.sp,
+            letterSpacing = 0.5.sp,
+            fontFamily = satoshiFont
+        ),
     )
 }

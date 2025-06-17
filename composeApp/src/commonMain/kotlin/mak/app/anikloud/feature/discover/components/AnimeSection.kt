@@ -14,13 +14,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,7 +45,7 @@ internal fun AnimeSection(
     Surface (
         modifier = modifier
             .padding(vertical = 6.dp),
-        elevation = 2.dp,
+        tonalElevation = 2.dp,
     ) {
         Column {
             Row(
@@ -56,7 +56,7 @@ internal fun AnimeSection(
             ) {
                 Text(
                     text = section.type.value,
-                    style = MaterialTheme.typography.h6
+                    style = MaterialTheme.typography.headlineSmall
                 )
                 Spacer(Modifier.weight(1f))
                 IconButton(onClick = {}) {
@@ -64,7 +64,7 @@ internal fun AnimeSection(
                         modifier = Modifier
                             .padding(2.dp),
                         imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                        tint = MaterialTheme.colors.secondary,
+                        tint = MaterialTheme.colorScheme.secondary,
                         contentDescription = stringResource(Res.string.more_btn_txt)
                     )
                 }
@@ -98,13 +98,13 @@ fun AnimeCard(
     onAnimeClick: (Anime) -> Unit
 ) {
     val colorStops = arrayOf(
-        0.0f to MaterialTheme.colors.surface.copy(0.20f),
-        0.3f to MaterialTheme.colors.surface.copy(0.80f),
-        1f to MaterialTheme.colors.surface.copy(0.95f)
+        0.0f to MaterialTheme.colorScheme.surface.copy(0.20f),
+        0.3f to MaterialTheme.colorScheme.surface.copy(0.80f),
+        1f to MaterialTheme.colorScheme.surface.copy(0.95f)
     )
     Box(
         modifier = modifier
-            .background(MaterialTheme.colors.surface.copy(alpha = 0.5f))
+            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
             .clip(MaterialTheme.shapes.medium)
     ) {
         Text(
@@ -113,7 +113,7 @@ fun AnimeCard(
                 .align(Alignment.Center)
                 .padding(horizontal = 8.dp),
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.body2,
+            style = MaterialTheme.typography.bodyMedium,
             maxLines = 2
         )
         AsyncImage(
@@ -135,7 +135,7 @@ fun AnimeCard(
                 .align(Alignment.BottomStart)
                 .padding(2.dp),
             text = title,
-            style = MaterialTheme.typography.caption,
+            style = MaterialTheme.typography.labelMedium,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )

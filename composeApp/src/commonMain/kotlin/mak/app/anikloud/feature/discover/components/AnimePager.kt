@@ -16,8 +16,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -96,9 +96,9 @@ private fun AnimePage(
     val isPressed = interactionSource.collectIsPressedAsState()
     val isHovered = interactionSource.collectIsHoveredAsState()
     val colorStops = arrayOf(
-        0.0f to MaterialTheme.colors.surface.copy(0.40f),
-        0.3f to MaterialTheme.colors.surface.copy(0.80f),
-        1f to MaterialTheme.colors.surface.copy(0.95f)
+        0.0f to MaterialTheme.colorScheme.surface.copy(0.40f),
+        0.3f to MaterialTheme.colorScheme.surface.copy(0.80f),
+        1f to MaterialTheme.colorScheme.surface.copy(0.95f)
     )
     Box(
         modifier = modifier
@@ -145,7 +145,7 @@ private fun AnimePage(
                 modifier = Modifier.padding(vertical = 8.dp)
                     .align(Alignment.Bottom),
                 text = anime.title,
-                style = MaterialTheme.typography.h6,
+                style = MaterialTheme.typography.headlineSmall,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )

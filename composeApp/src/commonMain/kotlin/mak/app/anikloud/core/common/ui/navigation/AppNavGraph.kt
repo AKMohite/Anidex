@@ -1,13 +1,16 @@
 package mak.app.anikloud.core.common.ui.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import mak.app.anikloud.core.common.ui.navigation.AppDestination.*
+import mak.app.anikloud.core.common.ui.navigation.AppDestination.DiscoverDestination
+import mak.app.anikloud.core.common.ui.navigation.AppDestination.SearchDestination
+import mak.app.anikloud.core.common.ui.navigation.AppDestination.SettingsDestination
+import mak.app.anikloud.core.common.ui.navigation.AppDestination.WatchlistDestination
 import mak.app.anikloud.feature.discover.DiscoverRoute
 
 @Composable

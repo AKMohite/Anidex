@@ -13,6 +13,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import mak.app.anikloud.domain.model.DiscoverCategory
 import mak.app.anikloud.feature.discover.components.AnimeSection
 import mak.app.anikloud.feature.discover.components.AnimePager
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

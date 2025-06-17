@@ -47,8 +47,19 @@ internal class SQLDelightLastSyncDAO(
 }
 
 internal interface LastSyncDAO {
+    /**
+     * [requestType] is the type of request being made
+     * [entityId] is the id of the entity being synced that can be detail of the entity
+     * @return [LastSyncEntity] or null if not found
+     */
     suspend fun getLastSyncFor(requestType: SyncRequest, entityId: String = DEFAULT_ID): LastSyncEntity?
     fun insert(requestType: SyncRequest, entityId: String = DEFAULT_ID)
+
+    /**
+     * [requestType] is the type of request being made
+     * [entityId] is the id of the entity being synced that can be detail of the entity
+     * [threshold] is the time threshold for the request to be valid
+     */
     suspend fun isRequestValid(requestType: SyncRequest, entityId: String = DEFAULT_ID, threshold: Duration): Boolean
 
 }

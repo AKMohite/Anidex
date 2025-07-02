@@ -13,8 +13,8 @@ internal fun DataDTO.toAnime(): Anime {
     return Anime(
         id = id?.toLong() ?: 0,
         title = attributes?.titles?.en ?: "",
-        poster = attributes?.posterImage?.tiny,
-        coverImage = attributes?.coverImage?.medium
+        poster = attributes?.posterImage?.original,
+        coverImage = attributes?.coverImage?.original
     )
 }
 
@@ -26,8 +26,8 @@ internal fun DataDTO.toEntity(): AnimeEntity = AnimeEntity(
     id = id?.toLong() ?: 0L,
     title = attributes?.titles?.en ?: "",
     description = attributes?.description ?: "",
-    image = attributes?.posterImage?.medium,
-    cover_image = attributes?.coverImage?.medium,
+    image = attributes?.posterImage?.original,
+    cover_image = attributes?.coverImage?.original,
     genres = "" // TODO map genres from repository
 )
 

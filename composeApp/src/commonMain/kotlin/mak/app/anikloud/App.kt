@@ -74,6 +74,9 @@ internal fun RootContainer() {
         Row {
             AnimatedVisibility(DeviceWindowSize.current == AdaptiveLayoutSize.Medium) {
                 AppNavigationRail(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .padding(horizontal = 8.dp),
                     currentDestination = currentDestination,
                     onNavRailItemClick = { route ->
                         navController.navigate(route.path) {

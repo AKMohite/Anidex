@@ -11,11 +11,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -31,10 +30,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import anikloud.composeapp.generated.resources.Res
+import anikloud.composeapp.generated.resources.ic_arrow_forward
 import anikloud.composeapp.generated.resources.more_btn_txt
 import coil3.compose.AsyncImage
 import mak.app.anikloud.domain.model.Anime
 import mak.app.anikloud.feature.discover.DiscoverSection
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -62,8 +63,9 @@ internal fun AnimeSection(
                 IconButton(onClick = {}) {
                     Icon(
                         modifier = Modifier
+                            .size(48.dp)
                             .padding(2.dp),
-                        imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                        painter = painterResource(resource = Res.drawable.ic_arrow_forward),
                         tint = MaterialTheme.colorScheme.secondary,
                         contentDescription = stringResource(Res.string.more_btn_txt)
                     )

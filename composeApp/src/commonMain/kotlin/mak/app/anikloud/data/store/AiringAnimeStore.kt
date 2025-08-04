@@ -15,19 +15,13 @@ import mak.app.anikloud.domain.model.SyncRequest
 
 internal class AiringAnimeStore(
     private val api: AnimeAPI,
-    animeDAO: AnimeDAO,
-    airingAnimeDAO: AiringAnimeDAO,
-    lastSyncDao: LastSyncDAO,
-    transactionRunner: DatabaseTransactionRunner,
-    dispatcher: Dispatcher
-): OfflineAnimeStore<AiringAnimeEntity>(
-    animeDAO = animeDAO,
-    tableDAO = airingAnimeDAO,
-    lastSyncDao = lastSyncDao,
-    transactionRunner = transactionRunner,
-    dispatcher = dispatcher,
-    syncRequest = SyncRequest.AIRING_ANIME
-) {
+    override val animeDAO: AnimeDAO,
+    override val tableDAO: AiringAnimeDAO,
+    override val lastSyncDao: LastSyncDAO,
+    override val transactionRunner: DatabaseTransactionRunner,
+    override val dispatcher: Dispatcher,
+    override val syncRequest: SyncRequest = SyncRequest.AIRING_ANIME
+): OfflineAnimeStore<AiringAnimeEntity>() {
     override fun mapEntities(page: Int, data: List<DataDTO>): List<AiringAnimeEntity> {
         return data.toAiringEntities(page)
     }

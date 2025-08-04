@@ -13,3 +13,8 @@ internal class RefreshAiringAnimeUseCase(
             .fetch(params, false)
     }
 }
+
+data class PaginatedParams(
+    val page: Int = 1,
+    val isForceRefresh: Boolean = false
+)

@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class PosterImageDTO(
+internal data class ImageDTO(
     @SerialName("tiny")
     var tiny: String? = null,
     @SerialName("large")

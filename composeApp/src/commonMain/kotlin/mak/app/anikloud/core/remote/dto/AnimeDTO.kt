@@ -47,9 +47,9 @@ internal data class AnimeDTO(
     @SerialName("tba")
     val tba: String? = null,
     @SerialName("posterImage")
-    val posterImage: PosterImageDTO? = null,
+    val posterImage: ImageDTO? = null,
     @SerialName("coverImage")
-    val coverImage: PosterImageDTO? = null,
+    val coverImage: ImageDTO? = null,
     @SerialName("episodeCount")
     val episodeCount: Int? = null,
     @SerialName("episodeLength")

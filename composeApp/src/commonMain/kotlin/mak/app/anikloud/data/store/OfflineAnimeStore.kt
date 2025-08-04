@@ -21,14 +21,13 @@ import org.mobilenativefoundation.store.store5.Validator
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 
-internal abstract class OfflineAnimeStore<Entity>(
-    private val animeDAO: AnimeDAO,
-    private val tableDAO: EntityDAO<Entity>,
-    private val lastSyncDao: LastSyncDAO,
-    private val transactionRunner: DatabaseTransactionRunner,
-    private val dispatcher: Dispatcher,
-    override val syncRequest: SyncRequest
-): DiscoverAnimeStore {
+internal abstract class OfflineAnimeStore<Entity>: DiscoverAnimeStore {
+
+    abstract val animeDAO: AnimeDAO
+    abstract val tableDAO: EntityDAO<Entity>
+    abstract val lastSyncDao: LastSyncDAO
+    abstract val transactionRunner: DatabaseTransactionRunner
+    abstract val dispatcher: Dispatcher
 
     override operator fun invoke(): Store<Int, List<Anime>> = storeBuilder(
         fetcher = Fetcher.of { page: Int ->

@@ -84,7 +84,6 @@ internal class DiscoverViewModel(
             DiscoverCategory.MOST_POPULAR -> getPopularAnimeUseCase(1)
             DiscoverCategory.TOP_RATED -> getTopRatedAnimeUseCase(1)
             DiscoverCategory.UPCOMING -> getUpcomingAnimeUseCase(1)
-            else -> getAiringAnimeUseCase(1)
         }
         return flowAnime
             .map { Pair(discoverCategory, it) }

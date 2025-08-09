@@ -1,11 +1,11 @@
 package mak.app.anikloud.core.database
 
-import kotlinx.datetime.Clock
 import mak.app.anikloud.AnikloudDatabase
 import mak.app.anikloud.core.common.util.Dispatcher
 import mak.app.anikloud.core.database.SQLDelightLastSyncDAO.Companion.DEFAULT_ID
 import mak.app.anikloud.domain.model.SyncRequest
 import mak.app.anikloud.local.Last_syncs
+import kotlin.time.Clock
 import kotlin.time.Duration
 
 internal typealias LastSyncEntity = Last_syncs

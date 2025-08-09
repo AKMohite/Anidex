@@ -67,28 +67,33 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.android.sql.driver)
         }
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(libs.coil.compose)
-            implementation(libs.coil.network.ktor)
-            implementation(libs.compose.adaptive)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(libs.koin.core)
-            implementation(libs.koin.compose.viewmodel)
-            implementation(libs.kotlinx.datetime)
-            implementation(libs.kotlinx.serialization.json)
-            implementation(libs.navigation.compose)
-            implementation(libs.sqldelight.extensions)
-            implementation(libs.sqldelight.primitive)
-            implementation(libs.store)
+        commonMain {
+            compilerOptions {
+                freeCompilerArgs.add("-opt-in=kotlin.time.ExperimentalTime")
+            }
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.ui)
+                implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
+                implementation(libs.coil.compose)
+                implementation(libs.coil.network.ktor)
+                implementation(libs.compose.adaptive)
+                implementation(libs.androidx.lifecycle.viewmodel)
+                implementation(libs.androidx.lifecycle.runtime.compose)
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose.viewmodel)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.navigation.compose)
+                implementation(libs.sqldelight.extensions)
+                implementation(libs.sqldelight.primitive)
+                implementation(libs.store)
 
-            implementation(libs.bundles.ktor)
+                implementation(libs.bundles.ktor)
+            }
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

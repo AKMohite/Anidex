@@ -8,18 +8,27 @@ import androidx.window.core.layout.WindowSizeClass.Companion.WIDTH_DP_MEDIUM_LOW
 
 
 enum class AdaptiveLayoutSize {
-    Compact, Medium, Expanded
+    Compact, Medium, Expanded, Large, ExtraLarge
 }
 
 internal val DeviceWindowSize = staticCompositionLocalOf<AdaptiveLayoutSize> {
     error("No dimensions calculated")
 }
 
+/**
+ * Below breakpoints are from [androidx.compose.material3.adaptive.DpWidthSizeClasses]
+ */
 @Composable
-fun AdaptiveLayout(): AdaptiveLayoutSize {
-    val windowInfo = currentWindowAdaptiveInfo()
+fun getAdaptiveLayoutSize(): AdaptiveLayoutSize {
+    val windowInfo = currentWindowAdaptiveInfo(supportLargeAndXLargeWidth = true)
     val sizeClass = windowInfo.windowSizeClass
     return when {
+        sizeClass.isWidthAtLeastBreakpoint(1600) -> {
+            AdaptiveLayoutSize.ExtraLarge
+        }
+        sizeClass.isWidthAtLeastBreakpoint(1200) -> {
+            AdaptiveLayoutSize.Large
+        }
         sizeClass.isWidthAtLeastBreakpoint(WIDTH_DP_EXPANDED_LOWER_BOUND) -> {
             AdaptiveLayoutSize.Expanded
         }

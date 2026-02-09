@@ -267,7 +267,7 @@ fun AppTheme(
     }
 
     CompositionLocalProvider(
-        DeviceWindowSize provides AdaptiveLayout()
+        DeviceWindowSize provides getAdaptiveLayoutSize()
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
